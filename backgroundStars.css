@@ -1,0 +1,15 @@
+body {
+    background-color: black;
+}
+
+.star {
+    background-color: white;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    width: random(2px, 6px, 1px);
+    position: fixed;
+    top: random(0%, 100%);
+    left: random(0%, 100%);
+    filter: drop-shadow();
+    mix-blend-mode: hard-light;
+}
