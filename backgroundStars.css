@@ -3,6 +3,7 @@ body {
 }
 
 .star {
+    --star-size: random(--star-size, 1px, 7px, 1px);
     background-color: white;
     border-radius: 50%;
     aspect-ratio: 1/1;
@@ -10,6 +11,6 @@ body {
     position: fixed;
     top: random(0%, 100%);
     left: random(0%, 100%);
-    filter: drop-shadow();
-    mix-blend-mode: hard-light;
+    filter: drop-shadow(0px 0px calc(var(--star-size) * 0.5) oklch(0.7 0.2 42)) 
+            drop-shadow(0px 0px calc(var(--star-size) * 2) white);
 }
