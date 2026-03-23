@@ -13,3 +13,608 @@
   <script src="/scripts/hero.js"></script>
 </body>
 </html>
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NEBULA-Xplorer — SRON</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <style>
+    :root {
+      --bg:      #01050f;
+      --deep:    #030915;
+      --accent:  #7ecfff;
+      --accent2: #a8e0ff;
+      --gold:    #e8d5a0;
+      --muted:   rgba(160,210,255,0.45);
+      --border:  rgba(160,210,255,0.09);
+      --white:   #e8f4ff;
+      --glow:    rgba(126,207,255,0.18);
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'DM Mono', monospace;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    body::after {
+      content:'';
+      position:fixed; inset:0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events:none; z-index:1000; opacity:.3;
+    }
+
+    /* Cursor */
+    #cur  { position:fixed; width:5px; height:5px; background:var(--accent); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); mix-blend-mode:difference; }
+    #curR { position:fixed; width:28px; height:28px; border:1px solid rgba(126,207,255,0.4); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:transform .18s ease; }
+
+    /* NAV */
+    nav {
+      position:fixed; top:0; left:0; right:0; z-index:100;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:22px 48px;
+      border-bottom:1px solid var(--border);
+      background:linear-gradient(to bottom, rgba(1,5,15,.92), transparent);
+      backdrop-filter:blur(0);
+    }
+    .nav-logo { font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:.22em; color:var(--white); text-decoration:none; }
+    .nav-logo span { color:var(--accent); }
+    .nav-links { display:flex; gap:36px; list-style:none; }
+    .nav-links a { font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color .2s; }
+    .nav-links a:hover { color:var(--white); }
+    .nav-badge { font-size:9px; letter-spacing:.15em; text-transform:uppercase; color:var(--accent); border:1px solid rgba(126,207,255,.25); padding:6px 14px; border-radius:2px; }
+
+    /* HERO */
+    #hero {
+      position:relative; width:100vw; height:100vh;
+      display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      overflow:hidden;
+    }
+    #hero canvas {
+      position:absolute !important;
+      inset:0; width:100% !important; height:100% !important;
+    }
+    #hero::after {
+      content:'';
+      position:absolute; inset:0;
+      background:
+        radial-gradient(ellipse 60% 60% at 50% 50%, transparent 20%, var(--bg) 100%),
+        linear-gradient(to bottom, rgba(1,5,15,.55) 0%, transparent 18%, transparent 72%, var(--bg) 100%);
+      pointer-events:none; z-index:2;
+    }
+
+    .hero-content {
+      position:relative; z-index:10;
+      text-align:center; display:flex; flex-direction:column; align-items:center;
+      pointer-events:none;
+    }
+    .hero-eyebrow { font-size:9px; letter-spacing:.35em; text-transform:uppercase; color:var(--accent); margin-bottom:20px; opacity:0; animation:fadeUp 1s .4s forwards; }
+    .hero-title {
+      font-family:'Bebas Neue',sans-serif;
+      font-size:clamp(60px,10vw,140px);
+      line-height:.88; letter-spacing:.04em; color:var(--white);
+      opacity:0; animation:fadeUp 1s .65s forwards;
+    }
+    .hero-title em { font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:300; color:var(--accent); }
+    .hero-sub { margin-top:28px; font-size:11px; letter-spacing:.13em; color:var(--muted); max-width:400px; line-height:2; opacity:0; animation:fadeUp 1s .9s forwards; }
+    .hero-actions { margin-top:40px; display:flex; gap:14px; opacity:0; animation:fadeUp 1s 1.1s forwards; pointer-events:all; }
+    .btn-p { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--bg); background:var(--accent); padding:13px 30px; border:none; border-radius:2px; cursor:none; text-decoration:none; transition:opacity .2s; }
+    .btn-p:hover { opacity:.85; }
+    .btn-g { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); background:transparent; padding:13px 30px; border:1px solid var(--border); border-radius:2px; cursor:none; text-decoration:none; transition:color .2s,border-color .2s; }
+    .btn-g:hover { color:var(--white); border-color:rgba(126,207,255,.3); }
+
+    /* data strip */
+    .data-strip {
+      position:absolute; bottom:0; left:0; right:0; z-index:10;
+      display:flex; align-items:center;
+      border-top:1px solid var(--border);
+      background:rgba(1,5,15,.65); backdrop-filter:blur(10px);
+      padding:11px 48px; gap:36px; overflow:hidden;
+    }
+    .di { display:flex; align-items:center; gap:9px; white-space:nowrap; }
+    .dl { font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); }
+    .dv { font-size:11px; letter-spacing:.08em; color:var(--accent); }
+    .dot { width:5px; height:5px; border-radius:50%; background:#44ffaa; box-shadow:0 0 6px #44ffaa; animation:blink 2s ease-in-out infinite; }
+    .dsep { width:1px; height:18px; background:var(--border); }
+    @keyframes blink { 0%,100%{opacity:1}50%{opacity:.3} }
+
+    /* STATS */
+    #stats {
+      position:relative; z-index:5;
+      background:var(--deep); border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+      padding:60px 48px;
+      display:grid; grid-template-columns:repeat(4,1fr); gap:0;
+    }
+    .stat { padding:0 40px; border-right:1px solid var(--border); }
+    .stat:first-child { padding-left:0; }
+    .stat:last-child { border-right:none; }
+    .sn { font-family:'Bebas Neue',sans-serif; font-size:58px; letter-spacing:.03em; color:var(--white); line-height:1; }
+    .sn span { color:var(--accent); font-size:.55em; }
+    .sl { margin-top:6px; font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); line-height:1.8; }
+
+    /* MARQUEE */
+    .mq-wrap { overflow:hidden; border-top:1px solid var(--border); border-bottom:1px solid var(--border); background:var(--deep); padding:16px 0; }
+    .mq-track { display:flex; gap:56px; animation:marquee 24s linear infinite; width:max-content; }
+    .mq-item { font-family:'Bebas Neue',sans-serif; font-size:12px; letter-spacing:.25em; color:var(--muted); white-space:nowrap; }
+    .mq-item span { color:var(--accent); margin-right:56px; }
+    @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+    /* SECTION WRAPPER */
+    .section { max-width:1360px; margin:0 auto; padding:120px 48px; }
+
+    /* ABOUT */
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
+    .tag { font-size:9px; letter-spacing:.3em; text-transform:uppercase; color:var(--accent); margin-bottom:22px; display:flex; align-items:center; gap:12px; }
+    .tag::before { content:''; display:block; width:28px; height:1px; background:var(--accent); }
+    .section-title { font-family:'Cormorant Garamond',serif; font-size:clamp(36px,4.5vw,62px); font-weight:300; line-height:1.08; color:var(--white); }
+    .section-title strong { font-weight:600; font-style:italic; color:var(--accent); }
+    .body-text { font-size:11px; line-height:2.2; color:var(--muted); margin-top:28px; }
+    .feature-list { display:flex; flex-direction:column; gap:0; }
+    .feature-item { padding:24px 0; border-bottom:1px solid var(--border); display:grid; grid-template-columns:36px 1fr; gap:18px; align-items:start; }
+    .fn { font-family:'Bebas Neue',sans-serif; font-size:12px; letter-spacing:.15em; color:var(--accent); padding-top:2px; }
+    .ft { font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--white); margin-bottom:6px; }
+    .fd { font-size:11px; line-height:1.9; color:var(--muted); }
+
+    /* CHARTS SECTION */
+    #charts { background:var(--deep); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+    .charts-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; }
+    .chart-card {
+      background:rgba(126,207,255,.025);
+      border:1px solid var(--border);
+      padding:32px;
+      position:relative;
+    }
+    .chart-card:hover { border-color:rgba(126,207,255,.15); }
+    .cc-label { font-size:9px; letter-spacing:.22em; text-transform:uppercase; color:var(--accent); margin-bottom:6px; }
+    .cc-title { font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:300; color:var(--white); margin-bottom:20px; }
+    .cc-canvas-wrap { position:relative; height:180px; }
+    .cc-note { font-size:9px; color:var(--muted); letter-spacing:.08em; margin-top:12px; line-height:1.7; }
+
+    /* MISSION CARDS */
+    #mission { background:var(--deep); border-top:1px solid var(--border); }
+    .mission-inner { display:grid; grid-template-columns:1fr 2fr; gap:80px; max-width:1360px; margin:0 auto; padding:120px 48px; }
+    .mission-sticky { position:sticky; top:120px; height:fit-content; }
+    .mission-heading { font-family:'Bebas Neue',sans-serif; font-size:50px; letter-spacing:.05em; line-height:.95; color:var(--white); margin-top:20px; }
+    .mission-cards { display:flex; flex-direction:column; gap:2px; }
+    .mc { background:rgba(126,207,255,.02); border:1px solid var(--border); padding:36px; border-radius:2px; transition:border-color .3s, background .3s; }
+    .mc:hover { border-color:rgba(126,207,255,.2); background:rgba(126,207,255,.04); }
+    .mc-idx { font-size:9px; letter-spacing:.2em; color:var(--accent); margin-bottom:16px; }
+    .mc-title { font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:300; color:var(--white); margin-bottom:14px; line-height:1.2; }
+    .mc-body { font-size:11px; line-height:2; color:var(--muted); }
+
+    /* DISTURBANCE TABLE */
+    #disturbance { border-top:1px solid var(--border); }
+    .table-wrap { overflow-x:auto; margin-top:40px; }
+    table { width:100%; border-collapse:collapse; font-size:11px; }
+    th { font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); padding:12px 20px; text-align:left; border-bottom:1px solid var(--border); }
+    td { padding:14px 20px; color:var(--muted); border-bottom:1px solid rgba(126,207,255,.05); }
+    td:first-child { color:var(--white); }
+    td.highlight { color:var(--accent); font-weight:400; }
+    tr:hover td { background:rgba(126,207,255,.025); }
+
+    /* CTA */
+    #contact { position:relative; padding:160px 48px; text-align:center; overflow:hidden; }
+    #contact::before { content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:500px; height:500px; background:radial-gradient(circle, rgba(126,207,255,.05) 0%, transparent 70%); pointer-events:none; }
+    .contact-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(55px,9vw,120px); letter-spacing:.04em; line-height:.9; color:var(--white); margin-bottom:36px; }
+    .contact-title em { font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:300; color:var(--accent); }
+    .contact-sub { font-size:11px; letter-spacing:.12em; line-height:2; color:var(--muted); max-width:440px; margin:0 auto 44px; }
+
+    /* FOOTER */
+    footer { border-top:1px solid var(--border); padding:28px 48px; display:flex; align-items:center; justify-content:space-between; }
+    .fl { font-family:'Bebas Neue',sans-serif; font-size:16px; letter-spacing:.2em; color:var(--muted); }
+    .fl span { color:var(--accent); }
+    .fc { font-size:9px; letter-spacing:.15em; text-transform:uppercase; color:rgba(160,210,255,.2); }
+    .flinks { display:flex; gap:28px; list-style:none; }
+    .flinks a { font-size:9px; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); text-decoration:none; }
+
+    /* REVEAL */
+    .reveal { opacity:0; transform:translateY(30px); transition:opacity .9s ease, transform .9s ease; }
+    .reveal.visible { opacity:1; transform:none; }
+
+    @keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+
+    @media(max-width:900px) {
+      nav { padding:18px 20px; }
+      .nav-links { display:none; }
+      #stats { grid-template-columns:1fr 1fr; padding:40px 20px; gap:24px; }
+      .stat { border-right:none; padding:0; border-bottom:1px solid var(--border); padding-bottom:20px; }
+      .about-grid { grid-template-columns:1fr; padding:60px 20px; }
+      .charts-grid { grid-template-columns:1fr; }
+      .mission-inner { grid-template-columns:1fr; padding:60px 20px; }
+      .mission-sticky { position:relative; top:auto; }
+      footer { flex-direction:column; gap:16px; text-align:center; }
+    }
+  </style>
+</head>
+<body>
+  <div id="cur"></div>
+  <div id="curR"></div>
+
+  <nav>
+    <a class="nav-logo" href="#">NEBULA<span>-X</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">Mission</a></li>
+      <li><a href="#charts">Data</a></li>
+      <li><a href="#mission">Systems</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-badge">SRON · PDR 2025</div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-content">
+      <div class="hero-eyebrow">SRON Netherlands Institute for Space Research</div>
+      <h1 class="hero-title">
+        NEBULA<br><em>Xplorer</em>
+      </h1>
+      <p class="hero-sub">High-precision X-ray astrophysics from Low-Earth Orbit. 550 km · 45° inclination · SpaceX Falcon 9 rideshare · Launch 2030</p>
+      <div class="hero-actions">
+        <a class="btn-p" href="#about">Explore Mission</a>
+        <a class="btn-g" href="#charts">View Data</a>
+      </div>
+    </div>
+    <div class="data-strip">
+      <div class="di"><div class="dot"></div><span class="dl">Live</span></div>
+      <div class="dsep"></div>
+      <div class="di"><span class="dl">UTC</span><span class="dv" id="ds-utc">--:--:--</span></div>
+      <div class="dsep"></div>
+      <div class="di"><span class="dl">Earth Tilt</span><span class="dv" id="ds-tilt">23.436°</span></div>
+      <div class="dsep"></div>
+      <div class="di"><span class="dl">ISS Alt</span><span class="dv" id="ds-alt">408 km</span></div>
+      <div class="dsep"></div>
+      <div class="di"><span class="dl">GMST</span><span class="dv" id="ds-gmst">--:--:--</span></div>
+      <div class="dsep"></div>
+      <div class="di"><span class="dl">NEBULA Orbit</span><span class="dv">550 km · 45°</span></div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section id="stats">
+    <div class="stat reveal">
+      <div class="sn">5<span>yr</span></div>
+      <div class="sl">Nominal mission<br>lifetime</div>
+    </div>
+    <div class="stat reveal" style="transition-delay:.1s">
+      <div class="sn">161<span>kg</span></div>
+      <div class="sl">Total spacecraft<br>mass</div>
+    </div>
+    <div class="stat reveal" style="transition-delay:.2s">
+      <div class="sn">10<span>×</span></div>
+      <div class="sl">X-ray concentrators<br>co-aligned</div>
+    </div>
+    <div class="stat reveal" style="transition-delay:.3s">
+      <div class="sn">89<span>W</span></div>
+      <div class="sl">Peak power draw<br>science mode</div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="mq-wrap">
+    <div class="mq-track">
+      <div class="mq-item">X-RAY ASTROPHYSICS <span>·</span></div>
+      <div class="mq-item">LOW-EARTH ORBIT <span>·</span></div>
+      <div class="mq-item">SRON NEBULA PROGRAM <span>·</span></div>
+      <div class="mq-item">FALCON 9 RIDESHARE <span>·</span></div>
+      <div class="mq-item">SILICON DRIFT DETECTORS <span>·</span></div>
+      <div class="mq-item">BINARY SYSTEMS <span>·</span></div>
+      <div class="mq-item">X-RAY ASTROPHYSICS <span>·</span></div>
+      <div class="mq-item">LOW-EARTH ORBIT <span>·</span></div>
+      <div class="mq-item">SRON NEBULA PROGRAM <span>·</span></div>
+      <div class="mq-item">FALCON 9 RIDESHARE <span>·</span></div>
+      <div class="mq-item">SILICON DRIFT DETECTORS <span>·</span></div>
+      <div class="mq-item">BINARY SYSTEMS <span>·</span></div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section about-grid">
+      <div class="reveal">
+        <div class="tag">What we are building</div>
+        <h2 class="section-title">Compact X-ray<br>space telescope<br>from <strong>LEO</strong></h2>
+        <p class="body-text">NEBULA-Xplorer is a compact, high-performance scientific satellite developed under SRON's NEBULA program. It delivers high-precision astrophysical observations from a 45° inclination orbit, studying the quasi-periodic behaviour of binary systems by detecting their X-ray emissions.</p>
+        <p class="body-text">The instrument houses 10 X-ray concentrators with a focal length of just 0.8 m — short enough to fit on a SpaceX Falcon 9 rideshare. Gold-coated mirrors on an aluminium substrate concentrate X-rays onto silicon drift detectors on the focal plane.</p>
+      </div>
+      <div class="feature-list reveal" style="transition-delay:.15s">
+        <div class="feature-item">
+          <div class="fn">01</div>
+          <div><div class="ft">X-ray Instrument</div><div class="fd">200 cm² effective area at 1 keV, 180 cm² at 6 keV. 10 co-aligned Wolter-type concentrators, 30 nested mirror shells each, gold-coated reflecting surfaces.</div></div>
+        </div>
+        <div class="feature-item">
+          <div class="fn">02</div>
+          <div><div class="ft">Attitude & Orbit Control</div><div class="fd">4× Rocket Lab RW3-0.06 reaction wheels in tetrahedral configuration. Star trackers provide 7 arcsec pointing accuracy. APE ≤ 240 arcsec.</div></div>
+        </div>
+        <div class="feature-item">
+          <div class="fn">03</div>
+          <div><div class="ft">Propulsion — Dawn SD5</div><div class="fd">Bipropellant N₂O / propylene system. 26.97 m/s total ΔV budget including 10 m/s margin. Total impulse 4.31 kNs.</div></div>
+        </div>
+        <div class="feature-item">
+          <div class="fn">04</div>
+          <div><div class="ft">Power System</div><div class="fd">SparkWing solar arrays with SADM, 0.76 m² area at 50V. 296 Whr battery capacity. Designed for 5-year EOL degradation.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHARTS -->
+  <section id="charts">
+    <div class="section">
+      <div class="tag reveal">Mission analysis · from the design document</div>
+      <h2 class="section-title reveal" style="transition-delay:.1s">Key <strong>performance</strong><br>data & budgets</h2>
+    </div>
+    <div class="charts-grid">
+
+      <!-- Chart 1: Power budget by subsystem -->
+      <div class="chart-card reveal">
+        <div class="cc-label">Power Budget</div>
+        <div class="cc-title">Science Mode Consumption</div>
+        <div class="cc-canvas-wrap"><canvas id="c-power"></canvas></div>
+        <div class="cc-note">Total: 89 W in science mode. Instrument dominates at 37 W. Power system losses estimated at 10% PCDU + 3.5% harness.</div>
+      </div>
+
+      <!-- Chart 2: Delta-V budget -->
+      <div class="chart-card reveal" style="transition-delay:.1s">
+        <div class="cc-label">Propulsion</div>
+        <div class="cc-title">ΔV Budget Breakdown</div>
+        <div class="cc-canvas-wrap"><canvas id="c-dv"></canvas></div>
+        <div class="cc-note">Reboost/EOL: 23.8 m/s (incl. 10 m/s margin). Collision avoidance: 3.18 m/s (100% margin). Total: 26.97 m/s.</div>
+      </div>
+
+      <!-- Chart 3: Disturbance torques -->
+      <div class="chart-card reveal" style="transition-delay:.2s">
+        <div class="cc-label">AOCS · Disturbance Environment</div>
+        <div class="cc-title">External Torques at 550 km</div>
+        <div class="cc-canvas-wrap"><canvas id="c-torque"></canvas></div>
+        <div class="cc-note">Atmospheric drag dominates at solar max. Max disturbance: 1.187×10⁻⁴ N·m (incl. 20% margin). Reaction wheels sized accordingly.</div>
+      </div>
+
+      <!-- Chart 4: Mass budget -->
+      <div class="chart-card reveal" style="transition-delay:.05s">
+        <div class="cc-label">Mass Budget</div>
+        <div class="cc-title">Spacecraft Mass by Subsystem</div>
+        <div class="cc-canvas-wrap"><canvas id="c-mass"></canvas></div>
+        <div class="cc-note">Total S/C dry mass: ~155.7 kg. Structure at 59.5 kg dominates. Instrument 41.9 kg limit per requirements document.</div>
+      </div>
+
+      <!-- Chart 5: Orbital lifetime -->
+      <div class="chart-card reveal" style="transition-delay:.15s">
+        <div class="cc-label">Mission Profile</div>
+        <div class="cc-title">Mission Phases Timeline</div>
+        <div class="cc-canvas-wrap"><canvas id="c-phases"></canvas></div>
+        <div class="cc-note">Nominal lifetime: 5 years (1825 days). Extended: +2 years. LEOP: 3 days. Commissioning: 27 days. Deorbit within 5 yr post-EOL per ESA debris rules.</div>
+      </div>
+
+      <!-- Chart 6: Eclipse fraction -->
+      <div class="chart-card reveal" style="transition-delay:.25s">
+        <div class="cc-label">Solar Conditions · 45° Inclination</div>
+        <div class="cc-title">Eclipse Fraction vs Solar Angle</div>
+        <div class="cc-canvas-wrap"><canvas id="c-eclipse"></canvas></div>
+        <div class="cc-note">Eclipse varies 0–37.2% of orbit. Solar irradiance: 1326–1418 W/m². At β=0° eclipse reaches 35.4 min/orbit. SSO would give longer eclipse-free periods.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DISTURBANCE TABLE -->
+  <section id="disturbance">
+    <div class="section">
+      <div class="tag reveal">AOCS · Table 6-2 from DDD</div>
+      <h2 class="section-title reveal" style="transition-delay:.1s">Maximum external<br><strong>disturbance torques</strong></h2>
+      <div class="table-wrap reveal" style="transition-delay:.2s">
+        <table>
+          <thead>
+            <tr>
+              <th>Disturbance Source</th>
+              <th>Torque [N·m]</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Gravity-Gradient</td><td>1.425 × 10⁻⁵</td><td>θ = 45° worst case; Iz vs Imax</td></tr>
+            <tr><td>Solar Radiation Pressure</td><td>1.317 × 10⁻⁶</td><td>Φ = 1414 W/m², AS = 1.55 m², q = 0.2</td></tr>
+            <tr><td>Magnetic Field</td><td>4.917 × 10⁻⁵</td><td>B max = 4.917×10⁻⁵ T; residual dipole D = 1 A·m²</td></tr>
+            <tr><td>Atmospheric Drag</td><td>9.888 × 10⁻⁵</td><td>Solar max: ρ = 5.995×10⁻¹² kg/m³, NRLMSISE-00 model</td></tr>
+            <tr><td class="highlight">Maximum (+ 20% margin)</td><td class="highlight">1.187 × 10⁻⁴</td><td>Drives actuator sizing</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION CARDS -->
+  <section id="mission">
+    <div class="mission-inner">
+      <div class="mission-sticky reveal">
+        <div class="tag">Subsystem overview</div>
+        <h2 class="mission-heading">SYSTEM<br>DESIGN</h2>
+      </div>
+      <div class="mission-cards">
+        <div class="mc reveal">
+          <div class="mc-idx">subsystem 01 · Structure</div>
+          <h3 class="mc-title">Hybrid Skeleton-Sandwich Architecture</h3>
+          <p class="mc-body">Al 6061-T6 X-braced truss frames cladded with CFRP honeycomb sandwich panels (M46J fibres, 13 mm Al 5056 core). Total structural mass: 59.5 kg. Natural frequency compliant with SpaceX Falcon 9 Rideshare requirements (≥40 Hz).</p>
+        </div>
+        <div class="mc reveal" style="transition-delay:.08s">
+          <div class="mc-idx">subsystem 02 · Instrument</div>
+          <h3 class="mc-title">10 Co-Aligned X-Ray Concentrators</h3>
+          <p class="mc-body">3-2-3-2 hexagonal grid layout in the Optical Bench Assembly. Isostatic mount via 3 titanium bipods for thermal isolation. Focal length 0.8 m, radius 50 mm. Amptek FastSDD silicon drift detectors on the Focal Plane Assembly.</p>
+        </div>
+        <div class="mc reveal" style="transition-delay:.16s">
+          <div class="mc-idx">subsystem 03 · Communications</div>
+          <h3 class="mc-title">S-Band Dual Transceiver System</h3>
+          <p class="mc-body">2× Satlab SRS-4 transceivers in hot redundancy. High-gain iQspacecom S-band patch antenna (11.5 dB) for downlink. Omnidirectional iSISPACE antennas for uplink. 8 Mbps peak downlink rate. 4–6 contacts per day.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="contact">
+    <p class="tag reveal" style="justify-content:center">SRON Netherlands Institute for Space Research</p>
+    <h2 class="contact-title reveal">
+      Into the<br><em>Unknown</em>
+    </h2>
+    <p class="contact-sub reveal">NEBULA-Xplorer advances X-ray astrophysics through compact, cost-effective satellite design — supporting Dutch aerospace industry and the next generation of space scientists.</p>
+    <div class="reveal">
+      <a class="btn-p" href="mailto:info@sron.nl">Contact SRON</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="fl">NEBULA<span>-X</span></div>
+    <p class="fc">© 2025 SRON Netherlands Institute for Space Research · Doc SRON-NEBULA-SP-2025-024</p>
+    <ul class="flinks">
+      <li><a href="#">SRON.nl</a></li>
+      <li><a href="#">ESA</a></li>
+      <li><a href="#">SpaceX</a></li>
+    </ul>
+  </footer>
+
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+  <script>
+  // ── Cursor ──────────────────────────────────────────────
+  const cur=document.getElementById('cur'),curR=document.getElementById('curR');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+  (function mc(){requestAnimationFrame(mc);rx+=(mx-rx)*.12;ry+=(my-ry)*.12;cur.style.left=mx+'px';cur.style.top=my+'px';curR.style.left=rx+'px';curR.style.top=ry+'px';})();
+
+  // ── Scroll reveal ────────────────────────────────────────
+  const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');}),{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // ── Astronomy ────────────────────────────────────────────
+  function getGMST(d){const JD=d.getTime()/86400000+2440587.5,T=(JD-2451545)/36525;let s=24110.54841+8640184.812866*T+0.093104*T*T-6.2e-6*T*T*T;const U=d.getUTCHours()*3600+d.getUTCMinutes()*60+d.getUTCSeconds()+d.getUTCMilliseconds()/1000;s=((s+U*1.00273790935)%86400+86400)%86400;return(s/86400)*2*Math.PI;}
+  function getObl(d){const T=(d.getTime()/86400000+2440587.5-2451545)/36525;return 23.439291111-0.013004167*T-0.000000164*T*T+0.000000504*T*T*T;}
+  function getSun(d){const JD=d.getTime()/86400000+2440587.5,n=JD-2451545,L=(280.46+0.9856474*n)%360,g=((357.528+0.9856003*n)%360)*Math.PI/180,λ=(L+1.915*Math.sin(g)+0.02*Math.sin(2*g))*Math.PI/180,ε=getObl(d)*Math.PI/180,dec=Math.asin(Math.sin(ε)*Math.sin(λ)),ra=Math.atan2(Math.cos(ε)*Math.sin(λ),Math.cos(λ)),g2=getGMST(d);return new THREE.Vector3(Math.cos(dec)*Math.cos(ra-g2),Math.sin(dec),Math.cos(dec)*Math.sin(ra-g2)).normalize();}
+  function gmstHMS(r){const h=(r/(2*Math.PI))*24,hh=Math.floor(h)%24,mm=Math.floor((h%1)*60),ss=Math.floor(((h%1)*60%1)*60);return`${String(hh).padStart(2,'0')}:${String(mm).padStart(2,'0')}:${String(ss).padStart(2,'0')}`;}
+
+  // ── Three.js ─────────────────────────────────────────────
+  const heroEl=document.getElementById('hero');
+  const scene=new THREE.Scene();
+  const camera=new THREE.PerspectiveCamera(42,heroEl.clientWidth/heroEl.clientHeight,0.01,2000);
+  camera.position.set(0,0.5,3.8); // further back = smaller globe
+
+  const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  renderer.setSize(heroEl.clientWidth,heroEl.clientHeight);
+  renderer.outputEncoding=THREE.sRGBEncoding;
+  renderer.toneMapping=THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure=1.0;
+  renderer.setClearColor(0,0);
+  heroEl.insertBefore(renderer.domElement,heroEl.firstChild);
+
+  const ctrl=new THREE.OrbitControls(camera,renderer.domElement);
+  ctrl.enableDamping=true;ctrl.dampingFactor=.05;ctrl.autoRotate=false;ctrl.minDistance=2;ctrl.maxDistance=10;ctrl.enableZoom=false;ctrl.enablePan=false;
+
+  // Stars
+  {const N=8000,p=new Float32Array(N*3),c=new Float32Array(N*3);for(let i=0;i<N;i++){const th=Math.random()*2*Math.PI,ph=Math.acos(2*Math.random()-1),r=500+Math.random()*300;p[i*3]=r*Math.sin(ph)*Math.cos(th);p[i*3+1]=r*Math.sin(ph)*Math.sin(th);p[i*3+2]=r*Math.cos(ph);const t=Math.random();c[i*3]=.7+t*.3;c[i*3+1]=.8+t*.15;c[i*3+2]=.9+t*.1;}
+  const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(p,3));g.setAttribute('color',new THREE.BufferAttribute(c,3));scene.add(new THREE.Points(g,new THREE.PointsMaterial({size:.45,sizeAttenuation:true,vertexColors:true,transparent:true,opacity:.75})));}
+
+  const sunLight=new THREE.DirectionalLight(0xfff5e0,2.2);scene.add(sunLight);
+  scene.add(new THREE.AmbientLight(0x050e20,1.2));
+
+  const pivot=new THREE.Group();scene.add(pivot);
+  const BASE='https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/planets/';
+  const loader=new THREE.TextureLoader();
+
+  const earth=new THREE.Mesh(new THREE.SphereGeometry(1,64,64),new THREE.MeshPhongMaterial({map:loader.load(BASE+'earth_atmos_2048.jpg'),specularMap:loader.load(BASE+'earth_specular_2048.jpg'),normalMap:loader.load(BASE+'earth_normal_2048.jpg'),specular:new THREE.Color(0x224488),shininess:18}));
+  pivot.add(earth);
+
+  // Night overlay
+  const nO=new THREE.Mesh(new THREE.SphereGeometry(1.001,64,64),new THREE.MeshBasicMaterial({color:0x000510,transparent:true,opacity:.80,side:THREE.FrontSide,depthWrite:false}));
+  nO.material.onBeforeCompile=sh=>{sh.uniforms.sunDir={value:new THREE.Vector3(1,0,0)};nO.material.userData.shader=sh;sh.vertexShader='varying vec3 vN;\n'+sh.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nvN=normal;');sh.fragmentShader='varying vec3 vN;\nuniform vec3 sunDir;\n'+sh.fragmentShader.replace('#include <dithering_fragment>',`#include <dithering_fragment>\nvec3 wn=normalize((modelMatrix*vec4(vN,0.0)).xyz);gl_FragColor.a*=1.0-smoothstep(-0.07,0.13,dot(wn,sunDir));`);};
+  pivot.add(nO);
+
+  const term=new THREE.Mesh(new THREE.SphereGeometry(1.002,64,64),new THREE.MeshBasicMaterial({transparent:true,opacity:0,depthWrite:false}));
+  term.material.onBeforeCompile=sh=>{sh.uniforms.sunDir={value:new THREE.Vector3(1,0,0)};term.material.userData.shader=sh;sh.vertexShader='varying vec3 vN2;\n'+sh.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nvN2=normal;');sh.fragmentShader='varying vec3 vN2;\nuniform vec3 sunDir;\n'+sh.fragmentShader.replace('#include <dithering_fragment>',`#include <dithering_fragment>\nvec3 wn=normalize((modelMatrix*vec4(vN2,0.0)).xyz);float ring=1.0-smoothstep(0.0,0.065,abs(dot(wn,sunDir)));gl_FragColor=vec4(1.0,0.55,0.22,ring*0.35);`);};
+  pivot.add(term);
+
+  const clouds=new THREE.Mesh(new THREE.SphereGeometry(1.012,64,64),new THREE.MeshPhongMaterial({map:loader.load(BASE+'earth_clouds_1024.png'),transparent:true,opacity:.32,depthWrite:false}));
+  pivot.add(clouds);
+  pivot.add(new THREE.Mesh(new THREE.SphereGeometry(1.055,48,48),new THREE.MeshPhongMaterial({color:0x2255cc,transparent:true,opacity:.06,side:THREE.FrontSide,depthWrite:false})));
+  pivot.add(new THREE.Mesh(new THREE.SphereGeometry(1.16,48,48),new THREE.MeshPhongMaterial({color:0x1133aa,transparent:true,opacity:.025,side:THREE.BackSide,depthWrite:false})));
+
+  // ISS
+  function latLon(lat,lon,r){const phi=(90-lat)*Math.PI/180,theta=(lon+180)*Math.PI/180;return new THREE.Vector3(-r*Math.sin(phi)*Math.cos(theta),r*Math.cos(phi),r*Math.sin(phi)*Math.sin(theta));}
+  const issMesh=new THREE.Mesh(new THREE.SphereGeometry(0.014,10,10),new THREE.MeshBasicMaterial({color:0x88ffcc}));
+  const issGlow=new THREE.Mesh(new THREE.SphereGeometry(0.026,10,10),new THREE.MeshBasicMaterial({color:0x44ffaa,transparent:true,opacity:.2,depthWrite:false}));
+  scene.add(issMesh);scene.add(issGlow);
+  const orbPos=new Float32Array(180*3);const orbGeo=new THREE.BufferGeometry();orbGeo.setAttribute('position',new THREE.BufferAttribute(orbPos,3));orbGeo.setDrawRange(0,0);
+  scene.add(new THREE.Line(orbGeo,new THREE.LineBasicMaterial({color:0x7ecfff,transparent:true,opacity:.35})));
+  let issH=[],issData=null;
+  async function fetchISS(){try{const r=await fetch('https://api.wheretheiss.at/v1/satellites/25544');issData=await r.json();}catch(e){}}
+  fetchISS();setInterval(fetchISS,5000);
+
+  window.addEventListener('resize',()=>{camera.aspect=heroEl.clientWidth/heroEl.clientHeight;camera.updateProjectionMatrix();renderer.setSize(heroEl.clientWidth,heroEl.clientHeight);});
+
+  const TOFF=Math.PI,cDR=(2*Math.PI)/(10*24*3600);
+  let cD=0,lT=performance.now(),lH=0;
+
+  function anim(ts){requestAnimationFrame(anim);const dt=Math.min((ts-lT)/1000,.1);lT=ts;cD+=cDR*dt;
+    const now=new Date(),gmst=getGMST(now),obl=getObl(now);
+    pivot.rotation.z=obl*Math.PI/180;
+    earth.rotation.y=gmst+TOFF;clouds.rotation.y=gmst+TOFF+cD;nO.rotation.y=gmst+TOFF;term.rotation.y=gmst+TOFF;
+    const sd=getSun(now);sunLight.position.copy(sd).multiplyScalar(50);
+    [nO,term].forEach(m=>{if(m.material.userData.shader)m.material.userData.shader.uniforms.sunDir.value.copy(sd);});
+    if(issData){const lat=parseFloat(issData.latitude),lon=parseFloat(issData.longitude),alt=parseFloat(issData.altitude),vel=parseFloat(issData.velocity);
+      const lp=latLon(lat,lon,1+alt/6371);const ry2=earth.rotation.y,cos=Math.cos(ry2),sin=Math.sin(ry2);
+      const wp=new THREE.Vector3(lp.x*cos+lp.z*sin,lp.y,-lp.x*sin+lp.z*cos);
+      wp.applyQuaternion(new THREE.Quaternion().setFromEuler(pivot.rotation));
+      issMesh.position.copy(wp);issGlow.position.copy(wp);
+      issH.push(wp.clone());if(issH.length>180)issH.shift();
+      const arr=orbGeo.attributes.position.array;for(let i=0;i<issH.length;i++){arr[i*3]=issH[i].x;arr[i*3+1]=issH[i].y;arr[i*3+2]=issH[i].z;}
+      orbGeo.attributes.position.needsUpdate=true;orbGeo.setDrawRange(0,issH.length);
+      if(ts-lH>1000){document.getElementById('ds-alt').textContent=alt.toFixed(0)+' km';}
+    }
+    if(ts-lH>1000){lH=ts;const now2=new Date();const h=String(now2.getUTCHours()).padStart(2,'0'),m=String(now2.getUTCMinutes()).padStart(2,'0'),s=String(now2.getUTCSeconds()).padStart(2,'0');document.getElementById('ds-utc').textContent=`${h}:${m}:${s}`;document.getElementById('ds-gmst').textContent=gmstHMS(gmst);document.getElementById('ds-tilt').textContent=obl.toFixed(3)+'°';}
+    ctrl.update();renderer.render(scene,camera);}
+  anim(performance.now());
+
+  // ── CHARTS ───────────────────────────────────────────────
+  const cc={color:'rgba(126,207,255,',bg:'rgba(126,207,255,',font:'DM Mono',text:'rgba(160,210,255,0.5)',grid:'rgba(126,207,255,0.07)'};
+  Chart.defaults.color=cc.text;
+  Chart.defaults.font.family=cc.font;
+  Chart.defaults.font.size=10;
+
+  const base={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{backgroundColor:'rgba(1,5,15,0.9)',borderColor:'rgba(126,207,255,0.2)',borderWidth:1,titleColor:'rgba(126,207,255,0.9)',bodyColor:'rgba(160,210,255,0.7)',padding:10}},scales:{x:{grid:{color:cc.grid},ticks:{color:cc.text}},y:{grid:{color:cc.grid},ticks:{color:cc.text}}}};
+
+  // Power by subsystem (horizontal bar)
+  new Chart(document.getElementById('c-power'),{type:'bar',data:{labels:['Instrument','Power Sys','AOCS','Thermal','Comms','CDH','Mechanisms'],datasets:[{data:[37.1,15.2,14.8,0,3.2,2.73,1.2],backgroundColor:['rgba(126,207,255,0.7)','rgba(126,207,255,0.5)','rgba(126,207,255,0.4)','rgba(126,207,255,0.3)','rgba(126,207,255,0.25)','rgba(126,207,255,0.2)','rgba(126,207,255,0.15)'],borderColor:'rgba(126,207,255,0.1)',borderWidth:1,borderRadius:2}]},options:{...base,indexAxis:'y',plugins:{...base.plugins},scales:{x:{...base.scales.x,title:{display:true,text:'Watts',color:cc.text}},y:{...base.scales.y}}}});
+
+  // Delta-V stacked
+  new Chart(document.getElementById('c-dv'),{type:'bar',data:{labels:['Reboost / EOL','Collision Avoid.'],datasets:[{label:'Base ΔV',data:[13.8,1.59],backgroundColor:'rgba(126,207,255,0.45)',borderRadius:2},{label:'Margin',data:[10,1.59],backgroundColor:'rgba(126,207,255,0.15)',borderRadius:2}]},options:{...base,plugins:{...base.plugins,legend:{display:true,labels:{color:cc.text,boxWidth:10,font:{size:9}}}},scales:{x:{...base.scales.x,stacked:true},y:{...base.scales.y,stacked:true,title:{display:true,text:'m/s',color:cc.text}}}}});
+
+  // Disturbance torques (log scale)
+  new Chart(document.getElementById('c-torque'),{type:'bar',data:{labels:['Grav. Gradient','Solar Rad. P.','Magnetic','Atm. Drag'],datasets:[{data:[1.425e-5,1.317e-6,4.917e-5,9.888e-5],backgroundColor:['rgba(126,207,255,0.35)','rgba(126,207,255,0.2)','rgba(126,207,255,0.5)','rgba(126,207,255,0.7)'],borderColor:'rgba(126,207,255,0.1)',borderWidth:1,borderRadius:2}]},options:{...base,scales:{x:{...base.scales.x},y:{...base.scales.y,type:'logarithmic',title:{display:true,text:'N·m (log)',color:cc.text}}}}});
+
+  // Mass donut
+  new Chart(document.getElementById('c-mass'),{type:'doughnut',data:{labels:['Structure','Instrument','AOCS','Propulsion','Power','Comms/CDH','Thermal'],datasets:[{data:[59.5,41.9,3.6,5.25,8,3,6.07],backgroundColor:['rgba(126,207,255,0.8)','rgba(126,207,255,0.65)','rgba(126,207,255,0.5)','rgba(126,207,255,0.38)','rgba(126,207,255,0.28)','rgba(126,207,255,0.18)','rgba(126,207,255,0.1)'],borderColor:'rgba(1,5,15,0.8)',borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{display:true,position:'right',labels:{color:cc.text,boxWidth:8,font:{size:9},padding:6}},tooltip:{backgroundColor:'rgba(1,5,15,0.9)',borderColor:'rgba(126,207,255,0.2)',borderWidth:1,titleColor:'rgba(126,207,255,0.9)',bodyColor:'rgba(160,210,255,0.7)',padding:10}}}});
+
+  // Mission phases (horizontal bar)
+  new Chart(document.getElementById('c-phases'),{type:'bar',data:{labels:['LEOP','Commissioning','Nominal Ops','Extended Ops','Decommission'],datasets:[{data:[3,27,1795,730,14],backgroundColor:['rgba(126,207,255,0.3)','rgba(126,207,255,0.4)','rgba(126,207,255,0.7)','rgba(126,207,255,0.5)','rgba(126,207,255,0.2)'],borderColor:'rgba(126,207,255,0.1)',borderWidth:1,borderRadius:2}]},options:{...base,indexAxis:'y',scales:{x:{...base.scales.x,title:{display:true,text:'Days',color:cc.text}},y:{...base.scales.y}}}});
+
+  // Eclipse vs solar angle
+  const angles=[];const eclipses=[];
+  for(let b=-68;b<=68;b+=4){angles.push(b+'°');const frac=Math.abs(b)>67?0:37.2*Math.cos(b*Math.PI/180);eclipses.push(parseFloat(frac.toFixed(1)));}
+  new Chart(document.getElementById('c-eclipse'),{type:'line',data:{labels:angles,datasets:[{data:eclipses,borderColor:'rgba(126,207,255,0.8)',backgroundColor:'rgba(126,207,255,0.08)',fill:true,tension:.4,pointRadius:0,borderWidth:2}]},options:{...base,scales:{x:{...base.scales.x,title:{display:true,text:'Solar angle β (deg)',color:cc.text}},y:{...base.scales.y,title:{display:true,text:'Eclipse fraction (%)',color:cc.text}}}}});
+
+  </script>
+</body>
+</html> -->

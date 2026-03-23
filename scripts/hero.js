@@ -15,7 +15,7 @@
     controls.minDistance    = 1.3;
     controls.maxDistance    = 6;
     controls.autoRotate     = true;
-    controls.autoRotateSpeed = 0.5;
+    controls.autoRotateSpeed = 0.1;
 
     // ── Sterrenachtergrond ─────────────────────────────────────────────────
     const starGeo = new THREE.BufferGeometry();
