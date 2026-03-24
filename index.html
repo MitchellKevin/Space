@@ -1,27 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Internet Explorer</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NEBULA-Xplorer — SRON</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="styles/hero.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet">
 </head>
 <body>
-<header>
-    <p>Internet Explorer</p>
-</header>
-<main>
-    <section>
-        <h1>Nebula Xplorer</h1>
-        <div></div>
-        <div></div>
-    </section>
-    <section>
-        <p></p>
-    </section>
-    <section>
-        <div></div>
-    </section>
-</main>
-<footer></footer>
+  <div id="cur"></div>
+  <div id="curR"></div>
+  <nav>
+    <a class="nav-logo" href="#">Internet<span><em>-Xplorer</em></span></a>
+  </nav>
+
+  <!-- HERO-->
+  <section id="hero">
+    <div class="hero-content">
+      <div class="hero-eyebrow">SRON Netherlands Institute for Space Research</div>
+      <h1 class="hero-title">
+        NEBULA<br><em>Xplorer</em>
+      </h1>
+      
+
+    </div>
+    <div class="data-strip">
+      <div class="di"><div class="dot"></div><span class="dl">Live</span></div>
+      <div class="dsep"></div>
+      <div class="di"><span class="dl">UTC</span><span class="dv" id="ds-utc">--:--:--</span></div>
+      <div class="dsep"></div>
+      <div class="di"><span class="dl">Earth Tilt</span><span class="dv" id="ds-tilt">23.436°</span></div>
+      <div class="dsep"></div>
+      <div class="di"><span class="dl">ISS Alt</span><span class="dv" id="ds-alt">408 km</span></div>
+      <div class="dsep"></div>
+      <div class="di"><span class="dl">GMST</span><span class="dv" id="ds-gmst">--:--:--</span></div>
+      <div class="dsep"></div>
+      <div class="di"><span class="dl">NEBULA Orbit</span><span class="dv">550 km · 45°</span></div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section id="stats">
+    <div class="stat reveal">
+      <div class="sn">5<span>yr</span></div>
+      <div class="sl">Nominal mission<br>lifetime</div>
+    </div>
+    <div class="stat reveal" style="transition-delay:.1s">
+      <div class="sn">161<span>kg</span></div>
+      <div class="sl">Total spacecraft<br>mass</div>
+    </div>
+    <div class="stat reveal" style="transition-delay:.2s">
+      <div class="sn">10<span>×</span></div>
+      <div class="sl">X-ray concentrators<br>co-aligned</div>
+    </div>
+    <div class="stat reveal" style="transition-delay:.3s">
+      <div class="sn">89<span>W</span></div>
+      <div class="sl">Peak power draw<br>science mode</div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="mq-wrap">
+    <div class="mq-track">
+      <div class="mq-item">X-RAY ASTROPHYSICS <span>·</span></div>
+      <div class="mq-item">LOW-EARTH ORBIT <span>·</span></div>
+      <div class="mq-item">SRON NEBULA PROGRAM <span>·</span></div>
+      <div class="mq-item">FALCON 9 RIDESHARE <span>·</span></div>
+      <div class="mq-item">SILICON DRIFT DETECTORS <span>·</span></div>
+      <div class="mq-item">BINARY SYSTEMS <span>·</span></div>
+      <div class="mq-item">X-RAY ASTROPHYSICS <span>·</span></div>
+      <div class="mq-item">LOW-EARTH ORBIT <span>·</span></div>
+      <div class="mq-item">SRON NEBULA PROGRAM <span>·</span></div>
+      <div class="mq-item">FALCON 9 RIDESHARE <span>·</span></div>
+      <div class="mq-item">SILICON DRIFT DETECTORS <span>·</span></div>
+      <div class="mq-item">BINARY SYSTEMS <span>·</span></div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section about-grid">
+      <div class="reveal">
+        <div class="tag">What we are building</div>
+        <h2 class="section-title">Compact <strong>X-ray</strong><br>space telescope</h2>
+        <p class="body-text">NEBULA-Xplorer is a compact, high-performance scientific satellite developed under SRON's NEBULA program. It delivers high-precision astrophysical observations from a 45° inclination orbit, studying the quasi-periodic behaviour of binary systems by detecting their X-ray emissions.</p>
+        <p class="body-text">The instrument houses 10 X-ray concentrators with a focal length of just 0.8 m — short enough to fit on a SpaceX Falcon 9 rideshare. Gold-coated mirrors on an aluminium substrate concentrate X-rays onto silicon drift detectors on the focal plane.</p>
+      </div>
+      <div class="feature-list reveal" style="transition-delay:.15s">
+        <div class="feature-item">
+          <div class="fn">01</div>
+          <div><div class="ft">X-ray Instrument</div><div class="fd">200 cm² effective area at 1 keV, 180 cm² at 6 keV. 10 co-aligned Wolter-type concentrators, 30 nested mirror shells each, gold-coated reflecting surfaces.</div></div>
+        </div>
+        <div class="feature-item">
+          <div class="fn">02</div>
+          <div><div class="ft">Attitude & Orbit Control</div><div class="fd">4× Rocket Lab RW3-0.06 reaction wheels in tetrahedral configuration. Star trackers provide 7 arcsec pointing accuracy. APE ≤ 240 arcsec.</div></div>
+        </div>
+        <div class="feature-item">
+          <div class="fn">03</div>
+          <div><div class="ft">Propulsion — Dawn SD5</div><div class="fd">Bipropellant N₂O / propylene system. 26.97 m/s total ΔV budget including 10 m/s margin. Total impulse 4.31 kNs.</div></div>
+        </div>
+        <div class="feature-item">
+          <div class="fn">04</div>
+          <div><div class="ft">Power System</div><div class="fd">SparkWing solar arrays with SADM, 0.76 m² area at 50V. 296 Whr battery capacity. Designed for 5-year EOL degradation.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p class="fc">© 2025 SRON Netherlands Institute for Space Research · Doc SRON-NEBULA-SP-2025-024</p>
+  </footer>
+
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="scripts/hero.js" defer></script>
 </body>
 </html>
