@@ -74,12 +74,12 @@
       text-align:center; display:flex; flex-direction:column; align-items:center;
       pointer-events:none;
     }
-    .hero-eyebrow { font-size:10px; letter-spacing:.35em; text-transform:uppercase; color:#ffffffab; margin-bottom:20px; opacity:0; animation:fadeUp 1s .4s forwards; }
+    .hero-eyebrow { font-size:10px; letter-spacing:.35em; text-transform:uppercase; color:#ffffffab; margin-bottom:20px; opacity:0; animation:fadeUp 2s .4s forwards; }
     .hero-title {
       font-family:'Bebas Neue',sans-serif;
       font-size:clamp(60px,10vw,140px);
       line-height:.88; letter-spacing:.04em; color:var(--white);
-      opacity:0; animation:fadeUp 1s .65s forwards;
+      opacity:0; animation:fadeUp 2.5s .65s forwards;
       
     }
     
