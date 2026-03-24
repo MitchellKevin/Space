@@ -1,0 +1,90 @@
+@property --radius-factor {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 5;
+}
+
+body {
+  --radius: 5vmin;
+  --def-dur: 4s;
+  --var-dur: 16s;
+  --slow-dur: 200s;
+  --radius-factor: 5;
+
+  height: 100dvh;
+  margin: 0;
+
+  display: grid;
+  place-items: center;
+
+  background: linear-gradient(black, rgb(0, 0, 20));
+}
+
+#blackHole {
+  width: calc(var(--radius) * 2);
+  aspect-ratio: 1;
+  /* border: solid 1px red; */
+  border-radius: 50%;
+  background-color: black;
+  display: grid;
+  place-items: center;
+  box-shadow: 0px 0px 3000px calc(var(--radius) * 3.5) rgba(15, 0, 226, 0.1);
+
+  transition: --radius-factor 0.5s ease;
+
+  &:hover {
+    --radius-factor: 4.5;
+
+    div {
+      box-shadow: 0px 0px 3px 5px rgba(255, 255, 255, 0.03);
+    }
+  }
+
+  div {
+    box-shadow: 0px 0px 3px 5px rgba(255, 255, 255, 0.02);
+    grid-area: 1/1;
+    height: calc(var(--radius) * 0.02);
+    aspect-ratio: 1 / calc(0.1 + 0.25 * var(--length) / 100);
+    background-image: linear-gradient(
+      90deg,
+      rgb(255 255 255 / calc(0.25 + 0.5 * var(--trans))),
+      #fff0
+    );
+
+    border-radius: calc(var(--radius) * 0.01) 0 0 calc(var(--radius) * 0.01);
+
+    --calc-dur: calc(
+      var(--def-dur) + var(--var-dur) * var(--dur) + var(--slow-dur) * var(--r)
+    );
+
+    animation-name: --ster;
+    animation-duration: var(--calc-dur);
+    animation-delay: calc(var(--calc-dur) * var(--del) * -1);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+}
+
+@keyframes --ster {
+  0% {
+    transform: rotate(0turn)
+      translateY(
+        calc(
+          var(--radius) + var(--radius) * var(--radius-factor) * var(--r) *
+            var(--r)
+        )
+      );
+  }
+
+  100% {
+    transform: rotate(1turn)
+      translateY(
+        calc(
+          var(--radius) + var(--radius) * var(--radius-factor) * var(--r) *
+            var(--r)
+        )
+      );
+  }
+}
+
+/* (bron: Sanne) */
