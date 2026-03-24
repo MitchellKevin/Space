@@ -1,97 +1,3 @@
-// // ── Scene ──────────────────────────────────────────────────────────────
-//     const scene    = new THREE.Scene();
-//     const camera   = new THREE.PerspectiveCamera(45, innerWidth / innerHeight, 0.1, 1000);
-//     camera.position.z = 2.5;
-
-//     const renderer = new THREE.WebGLRenderer({ antialias: true });
-//     renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-//     renderer.setSize(innerWidth, innerHeight);
-//     document.body.appendChild(renderer.domElement);
-
-    // // ── Controls ───────────────────────────────────────────────────────────
-    // const controls = new THREE.OrbitControls(camera, renderer.domElement);
-    // controls.enableDamping  = true;
-    // controls.dampingFactor  = 0.05;
-    // controls.minDistance    = 1.3;
-    // controls.maxDistance    = 6;
-    // controls.autoRotate     = true;
-    // controls.autoRotateSpeed = 0.5;
-
-//     // ── Sterrenachtergrond ─────────────────────────────────────────────────
-//     const starGeo = new THREE.BufferGeometry();
-//     const starCount = 6000;
-//     const starPos = new Float32Array(starCount * 3);
-//     for (let i = 0; i < starCount * 3; i++) {
-//       starPos[i] = (Math.random() - 0.5) * 400;
-//     }
-//     starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
-//     const starMat = new THREE.PointsMaterial({ color: 0xffffff, size: 0.15, sizeAttenuation: true });
-//     scene.add(new THREE.Points(starGeo, starMat));
-
-//     // ── Aardbol ────────────────────────────────────────────────────────────
-//     const earthGeo = new THREE.SphereGeometry(1, 64, 64);
-
-//     // Texturen via publieke NASA/NASA-style CDN
-//     const loader = new THREE.TextureLoader();
-
-//     const earthMat = new THREE.MeshPhongMaterial({
-//       map:          loader.load('https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/planets/earth_atmos_2048.jpg'),
-//       specularMap:  loader.load('https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/planets/earth_specular_2048.jpg'),
-//       normalMap:    loader.load('https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/planets/earth_normal_2048.jpg'),
-//       specular:     new THREE.Color(0x333333),
-//       shininess:    15,
-//     });
-
-//     const earth = new THREE.Mesh(earthGeo, earthMat);
-//     scene.add(earth);
-
-//     // ── Wolken ─────────────────────────────────────────────────────────────
-//     const cloudGeo = new THREE.SphereGeometry(1.01, 64, 64);
-//     const cloudMat = new THREE.MeshPhongMaterial({
-//       map:         loader.load('https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/planets/earth_clouds_1024.png'),
-//       transparent: true,
-//       opacity:     0.35,
-//       depthWrite:  false,
-//     });
-//     const clouds = new THREE.Mesh(cloudGeo, cloudMat);
-//     scene.add(clouds);
-
-//     // ── Atmosfeer gloed ────────────────────────────────────────────────────
-//     const atmGeo = new THREE.SphereGeometry(1.05, 64, 64);
-//     const atmMat = new THREE.MeshPhongMaterial({
-//       color:       0x4488ff,
-//       transparent: true,
-//       opacity:     0.08,
-//       side:        THREE.FrontSide,
-//       depthWrite:  false,
-//     });
-//     scene.add(new THREE.Mesh(atmGeo, atmMat));
-
-//     // ── Verlichting ────────────────────────────────────────────────────────
-//     // Zon-licht (zon staat rechts-voor)
-//     const sunLight = new THREE.DirectionalLight(0xfff5e0, 1.8);
-//     sunLight.position.set(5, 3, 5);
-//     scene.add(sunLight);
-
-//     // Zwak ambient voor de donkere kant
-//     scene.add(new THREE.AmbientLight(0x112244, 0.6));
-
-//     // ── Resize ─────────────────────────────────────────────────────────────
-//     window.addEventListener('resize', () => {
-//       camera.aspect = innerWidth / innerHeight;
-//       camera.updateProjectionMatrix();
-//       renderer.setSize(innerWidth, innerHeight);
-//     });
-
-//     // ── Animatie ───────────────────────────────────────────────────────────
-//     (function animate() {
-//       requestAnimationFrame(animate);
-//       clouds.rotation.y += 0.00015;   // wolken draaien iets sneller
-//       controls.update();
-//       renderer.render(scene, camera);
-//     })();
-
-
      // ── Cursor ──────────────────────────────────────────────
   const cur=document.getElementById('cur'),curR=document.getElementById('curR');
   let mx=0,my=0,rx=0,ry=0;
@@ -113,8 +19,7 @@
   const heroEl=document.getElementById('hero');
   const scene=new THREE.Scene();
   const camera=new THREE.PerspectiveCamera(42,heroEl.clientWidth/heroEl.clientHeight,0.01,2000);
-  camera.position.set(0,0.5,3.8); // further back = smaller globe
-
+  camera.position.set(0,0.5,4); // further back = smaller globe
   const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});
   renderer.setPixelRatio(Math.min(devicePixelRatio,2));
   renderer.setSize(heroEl.clientWidth,heroEl.clientHeight);
@@ -125,14 +30,21 @@
   heroEl.insertBefore(renderer.domElement,heroEl.firstChild);
 
   const ctrl=new THREE.OrbitControls(camera,renderer.domElement);
-  ctrl.enableDamping=true;ctrl.dampingFactor=.05;ctrl.autoRotate=false;ctrl.minDistance=2;ctrl.maxDistance=10;ctrl.enableZoom=false;ctrl.enablePan=false;
+      ctrl.enableDamping  = true;
+    ctrl.dampingFactor  = 0.05;
+    ctrl.minDistance=3;
+    ctrl.maxDistance=100;
+    ctrl.autoRotate     = true;
+    ctrl.autoRotateSpeed = 0.5;
+    // ctrl.enableZoom=false;
+  // ctrl.enableDamping=true;ctrl.dampingFactor=.05;ctrl.autoRotate=false;ctrl.minDistance=2;ctrl.maxDistance=10;ctrl.enableZoom=false;ctrl.enablePan=false;
 
-  // Stars
-  {const N=8000,p=new Float32Array(N*3),c=new Float32Array(N*3);for(let i=0;i<N;i++){const th=Math.random()*2*Math.PI,ph=Math.acos(2*Math.random()-1),r=500+Math.random()*300;p[i*3]=r*Math.sin(ph)*Math.cos(th);p[i*3+1]=r*Math.sin(ph)*Math.sin(th);p[i*3+2]=r*Math.cos(ph);const t=Math.random();c[i*3]=.7+t*.3;c[i*3+1]=.8+t*.15;c[i*3+2]=.9+t*.1;}
-  const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(p,3));g.setAttribute('color',new THREE.BufferAttribute(c,3));scene.add(new THREE.Points(g,new THREE.PointsMaterial({size:.45,sizeAttenuation:true,vertexColors:true,transparent:true,opacity:.75})));}
+  // // Stars
+  // {const N=8000,p=new Float32Array(N*3),c=new Float32Array(N*3);for(let i=0;i<N;i++){const th=Math.random()*2*Math.PI,ph=Math.acos(2*Math.random()-1),r=500+Math.random()*300;p[i*3]=r*Math.sin(ph)*Math.cos(th);p[i*3+1]=r*Math.sin(ph)*Math.sin(th);p[i*3+2]=r*Math.cos(ph);const t=Math.random();c[i*3]=.7+t*.3;c[i*3+1]=.8+t*.15;c[i*3+2]=.9+t*.1;}
+  // const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(p,3));g.setAttribute('color',new THREE.BufferAttribute(c,3));scene.add(new THREE.Points(g,new THREE.PointsMaterial({size:.45,sizeAttenuation:true,vertexColors:true,transparent:true,opacity:.75})));}
 
-  const sunLight=new THREE.DirectionalLight(0xfff5e0,2.2);scene.add(sunLight);
-  scene.add(new THREE.AmbientLight(0x050e20,1.2));
+  const sunLight=new THREE.DirectionalLight(0xe8d5a0,.5);scene.add(sunLight);
+  scene.add(new THREE.AmbientLight(0x050e20,3.1));
 
   const pivot=new THREE.Group();scene.add(pivot);
   const BASE='https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/planets/';
@@ -173,7 +85,7 @@
   function anim(ts){requestAnimationFrame(anim);const dt=Math.min((ts-lT)/1000,.1);lT=ts;cD+=cDR*dt;
     const now=new Date(),gmst=getGMST(now),obl=getObl(now);
     pivot.rotation.z=obl*Math.PI/180;
-    earth.rotation.y=gmst+TOFF;clouds.rotation.y=gmst+TOFF+cD;nO.rotation.y=gmst+TOFF;term.rotation.y=gmst+TOFF;
+    earth.rotation.y=-(360-22.5);
     const sd=getSun(now);sunLight.position.copy(sd).multiplyScalar(50);
     [nO,term].forEach(m=>{if(m.material.userData.shader)m.material.userData.shader.uniforms.sunDir.value.copy(sd);});
     if(issData){const lat=parseFloat(issData.latitude),lon=parseFloat(issData.longitude),alt=parseFloat(issData.altitude),vel=parseFloat(issData.velocity);
