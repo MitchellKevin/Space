@@ -1,6 +1,20 @@
  let camZ = 100;          // start (minDistance)
 const targetZ = 3;  
-  
+
+// https://dev.to/clementgaudiniere/create-a-parallax-effect-when-the-mouse-moves-3km0
+// document.addEventListener("mousemove", parallax);
+// function parallax(event) {
+//   this.querySelectorAll(".hero-content").forEach((shift) => {
+//     const position = shift.getAttribute("value");
+//     const x = (window.innerWidth - event.pageX * position) / 90;
+//     const y = (window.innerHeight - event.pageY * position) / 90;
+
+//     shift.style.transform = `translateX(${x}px) translateY(${y}px)`;
+//   });
+// }
+
+
+
   // ── Cursor ──────────────────────────────────────────────
   const cur=document.getElementById('cur'),curR=document.getElementById('curR');
   let mx=0,my=0,rx=0,ry=0;
