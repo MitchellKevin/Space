@@ -1,0 +1,81 @@
+/* page */
+
+main {
+    position: relative;
+
+    timeline-scope: --heroTrigger, --aboutTrigger, --sateliteTrigger;
+}
+
+/* hero + wrapper */
+
+/* wrapper */
+#heroWrapper {
+    height: 200svh;
+
+}
+
+/* hero */
+#hero {
+    position: sticky;
+    height: 100svh;
+    top: 0;
+    view-timeline-name: --heroTrigger;
+
+
+}
+
+/* .hero-content {
+
+} */
+
+
+/* section about */
+#about {
+    view-timeline-name: --aboutTrigger;
+
+}
+
+/* section satelite info */
+#satelite {
+    view-timeline-name: --sateliteTrigger;
+
+}
+
+
+/* satelite to be animated */
+
+/* wrapper */
+.sateliteWrapper {
+    /* display: none; */
+    /* background: hotpink; */
+
+    position: absolute;
+    height: 100%;
+    left: 50%;
+}
+
+/* satelite */
+.sateliteAnimation {
+    width: 300px;
+    height: auto;
+
+    position: sticky;
+    top: 0;
+
+    animation-name: rotateSatelite;
+    animation-timeline: --heroTrigger;
+    /* animation-timeline: scroll(); */
+    /* animation-timeline: --heroTrigger, --aboutTrigger, --sateliteTrigger; */
+    animation-range: entry 100svh cover;
+    /* animation-range: entry 0% cover 100%; */
+    animation-fill-mode: both;
+
+}
+
+/* keyframes */
+
+@keyframes rotateSatelite {
+    to {
+        rotate: 1.5turn;
+    }
+}

@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="styles/root.css">
   <link rel="stylesheet" href="styles/style.css">
   <link rel="stylesheet" href="styles/hero.css">
+  <link rel="stylesheet" href="styles/satelite_animation.css">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet">
 </head>
 
@@ -21,31 +22,36 @@
   </header>
 
   <main>
+    <div class="sateliteWrapper">
+      <img class="sateliteAnimation" src="/assets/images/satelite_basic.png" alt="nebula explorer satelite">
+    </div>
 
     <!-- HERO-->
-    <section id="hero">
-      <div class="hero-content">
-        <div class="hero-eyebrow">SRON Netherlands Institute for Space Research</div>
-        <h1 class="hero-title">
-          NEBULA<br><em>Xplorer</em>
-        </h1>
-        
+     <div id="heroWrapper">
+      <section id="hero">
+        <div class="hero-content">
+          <div class="hero-eyebrow">SRON Netherlands Institute for Space Research</div>
+          <h1 class="hero-title">
+            NEBULA<br><em>Xplorer</em>
+          </h1>
+          
 
-      </div>
-      <div class="data-strip">
-        <div class="di"><div class="dot"></div><span class="dl">Live</span></div>
-        <div class="dsep"></div>
-        <div class="di"><span class="dl">UTC</span><span class="dv" id="ds-utc">--:--:--</span></div>
-        <div class="dsep"></div>
-        <div class="di"><span class="dl">Earth Tilt</span><span class="dv" id="ds-tilt">23.436°</span></div>
-        <div class="dsep"></div>
-        <div class="di"><span class="dl">ISS Alt</span><span class="dv" id="ds-alt">408 km</span></div>
-        <div class="dsep"></div>
-        <div class="di"><span class="dl">GMST</span><span class="dv" id="ds-gmst">--:--:--</span></div>
-        <div class="dsep"></div>
-        <div class="di"><span class="dl">NEBULA Orbit</span><span class="dv">550 km · 45°</span></div>
-      </div>
-    </section>
+        </div>
+        <div class="data-strip">
+          <div class="di"><div class="dot"></div><span class="dl">Live</span></div>
+          <div class="dsep"></div>
+          <div class="di"><span class="dl">UTC</span><span class="dv" id="ds-utc">--:--:--</span></div>
+          <div class="dsep"></div>
+          <div class="di"><span class="dl">Earth Tilt</span><span class="dv" id="ds-tilt">23.436°</span></div>
+          <div class="dsep"></div>
+          <div class="di"><span class="dl">ISS Alt</span><span class="dv" id="ds-alt">408 km</span></div>
+          <div class="dsep"></div>
+          <div class="di"><span class="dl">GMST</span><span class="dv" id="ds-gmst">--:--:--</span></div>
+          <div class="dsep"></div>
+          <div class="di"><span class="dl">NEBULA Orbit</span><span class="dv">550 km · 45°</span></div>
+        </div>
+      </section>
+    </div>
 
     <!-- STATS -->
     <section id="stats">
@@ -117,8 +123,8 @@
 
     <!-- SATELITE GEBEUREN -->
     <section id="satelite">
-                <h2 class="section-title">Satelite info</h2>
-                <img src="/assets/images/satelite_basic.png" alt="the nebula explorer satelite"/>
+      <h2 class="section-title">Satelite info</h2>
+      <img src="/assets/images/satelite_basic.png" alt="the nebula explorer satelite"/>
 
     </section>
 
