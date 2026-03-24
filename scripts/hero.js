@@ -15,7 +15,6 @@ const targetZ = 3;
   function getGMST(d){const JD=d.getTime()/86400000+2440587.5,T=(JD-2451545)/36525;let s=24110.54841+8640184.812866*T+0.093104*T*T-6.2e-6*T*T*T;const U=d.getUTCHours()*3600+d.getUTCMinutes()*60+d.getUTCSeconds()+d.getUTCMilliseconds()/1000;s=((s+U*1.00273790935)%86400+86400)%86400;return(s/86400)*2*Math.PI;}
   function getObl(d){const T=(d.getTime()/86400000+2440587.5-2451545)/36525;return 23.439291111-0.013004167*T-0.000000164*T*T+0.000000504*T*T*T;}
   function getSun(d){const JD=d.getTime()/86400000+2440587.5,n=JD-2451545,L=(280.46+0.9856474*n)%360,g=((357.528+0.9856003*n)%360)*Math.PI/180,λ=(L+1.915*Math.sin(g)+0.02*Math.sin(2*g))*Math.PI/180,ε=getObl(d)*Math.PI/180,dec=Math.asin(Math.sin(ε)*Math.sin(λ)),ra=Math.atan2(Math.cos(ε)*Math.sin(λ),Math.cos(λ)),g2=getGMST(d);return new THREE.Vector3(Math.cos(dec)*Math.cos(ra-g2),Math.sin(dec),Math.cos(dec)*Math.sin(ra-g2)).normalize();}
-  function gmstHMS(r){const h=(r/(2*Math.PI))*24,hh=Math.floor(h)%24,mm=Math.floor((h%1)*60),ss=Math.floor(((h%1)*60%1)*60);return`${String(hh).padStart(2,'0')}:${String(mm).padStart(2,'0')}:${String(ss).padStart(2,'0')}`;}
 
 
   // ── Three.js ─────────────────────────────────────────────
@@ -69,6 +68,15 @@ const targetZ = 3;
   pivot.add(new THREE.Mesh(new THREE.SphereGeometry(1.055,48,48),new THREE.MeshPhongMaterial({color:0x2255cc,transparent:true,opacity:.06,side:THREE.FrontSide,depthWrite:false})));
   pivot.add(new THREE.Mesh(new THREE.SphereGeometry(1.16,48,48),new THREE.MeshPhongMaterial({color:0x1133aa,transparent:true,opacity:.025,side:THREE.BackSide,depthWrite:false})));
 
+  // const sateliteGeo = new THREE.SphereGeometry(3.2, 30, 30);
+  // const sateliteMat = new THREE.MeshBasicMaterial({
+  //   map: TextureLoader.load(mercuryTexture)
+  // })
+  // const satelite = new THREE.Mesh(sateliteGeo, sateliteMat);
+  // pivot.add(satelite);
+  // satelite.position.x = 28;
+
+
   window.addEventListener('resize',()=>{camera.aspect=heroEl.clientWidth/heroEl.clientHeight;camera.updateProjectionMatrix();renderer.setSize(heroEl.clientWidth,heroEl.clientHeight);});
 
   const TOFF=Math.PI,cDR=(2*Math.PI)/(10*24*3600);
@@ -89,7 +97,6 @@ camera.position.z = camZ;
     earth.rotation.y=-(360-23.5);
     const sd=getSun(now);sunLight.position.copy(sd).multiplyScalar(50);
     [nO,term].forEach(m=>{if(m.material.userData.shader)m.material.userData.shader.uniforms.sunDir.value.copy(sd);});
-    if(ts-lH>1000){lH=ts;const now2=new Date();const h=String(now2.getUTCHours()).padStart(2,'0'),m=String(now2.getUTCMinutes()).padStart(2,'0'),s=String(now2.getUTCSeconds()).padStart(2,'0');document.getElementById('ds-utc').textContent=`${h}:${m}:${s}`;document.getElementById('ds-gmst').textContent=gmstHMS(gmst);document.getElementById('ds-tilt').textContent=obl.toFixed(3)+'°';}
     ctrl.update();renderer.render(scene,camera);}
     
   anim(performance.now());
