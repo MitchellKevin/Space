@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NEBULA-Xplorer — SRON</title>
   <link rel="icon" type="image/x-icon" href="/assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" href="styles/root.css">
   <link rel="stylesheet" href="styles/style.css">
   <link rel="stylesheet" href="styles/hero.css">
-  <!-- <link rel="stylesheet" href="styles/satelite_animation.css"> -->
-  <link rel="stylesheet" href="styles/stars.css"> 
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet">
-  <script src="scripts/script.js" defer></script>
+  <link rel="stylesheet" href="styles/satelite_animation.css">
+  <link rel="stylesheet" href="styles/stars.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&display=swap"
+    rel="stylesheet">
+  <!-- <script src="scripts/script.js" defer></script> -->
 </head>
 
 <body>
@@ -25,25 +28,42 @@
   </header>
 
   <main>
-    <!-- <div class="sateliteWrapper">
+    <div class="Satelite3dScene">
+      <div class="Satelite3d">
+        <div class="body">
+          <div class="panelFront"></div>
+          <div class="panelBack"></div>
+          <div class="panelLeft"></div>
+          <div class="panelRight"></div>
+          <div class="panelTop"></div>
+          <div class="panelBottom"></div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="sateliteWrapper">
       <div class="stickyContainer">
         <img class="sateliteAnimation" src="/assets/images/satelite_basic.png" alt="nebula explorer satelite">
       </div>
-    </div> -->
+    </div>
 
     <!-- HERO-->
-     <div id="heroWrapper">
+    <div id="heroWrapper">
       <section id="hero">
         <div class="hero-content">
-          <div class="hero-eyebrow">SRON Netherlands Institute for Space Research</div>
+          <!-- <div class="hero-eyebrow">SRON Netherlands Institute for Space Research</div>
           <h1 class="hero-title">
             NEBULA<br><em>Xplorer</em>
-          </h1>
-          
+          </h1> -->
+
 
         </div>
         <div class="data-strip">
-          <div class="di"><div class="dot"></div><span class="dl">Live</span></div>
+          <div class="di">
+            <div class="dot"></div><span class="dl">Live</span>
+          </div>
           <div class="dsep"></div>
           <div class="di"><span class="dl">UTC</span><span class="dv" id="ds-utc">--:--:--</span></div>
           <div class="dsep"></div>
@@ -56,6 +76,8 @@
           <div class="di"><span class="dl">NEBULA Orbit</span><span class="dv">550 km · 45°</span></div>
         </div>
       </section>
+            <img src="/assets/images/satelite_basic.png" alt="the nebula explorer satelite" />
+
     </div>
 
     <!-- STATS -->
@@ -102,25 +124,45 @@
         <div class="reveal">
           <div class="tag">What we are building</div>
           <h2 class="section-title">Compact <strong>X-ray</strong><br>space telescope</h2>
-          <p class="body-text">NEBULA-Xplorer is a compact, high-performance scientific satellite developed under SRON's NEBULA program. It delivers high-precision astrophysical observations from a 45° inclination orbit, studying the quasi-periodic behaviour of binary systems by detecting their X-ray emissions.</p>
-          <p class="body-text">The instrument houses 10 X-ray concentrators with a focal length of just 0.8 m — short enough to fit on a SpaceX Falcon 9 rideshare. Gold-coated mirrors on an aluminium substrate concentrate X-rays onto silicon drift detectors on the focal plane.</p>
+          <p class="body-text">NEBULA-Xplorer is a compact, high-performance scientific satellite developed under SRON's
+            NEBULA program. It delivers high-precision astrophysical observations from a 45° inclination orbit, studying
+            the quasi-periodic behaviour of binary systems by detecting their X-ray emissions.</p>
+          <p class="body-text">The instrument houses 10 X-ray concentrators with a focal length of just 0.8 m — short
+            enough to fit on a SpaceX Falcon 9 rideshare. Gold-coated mirrors on an aluminium substrate concentrate
+            X-rays onto silicon drift detectors on the focal plane.</p>
         </div>
         <div class="feature-list reveal" style="transition-delay:.15s">
           <div class="feature-item">
             <div class="fn">01</div>
-            <div><div class="ft">X-ray Instrument</div><div class="fd">200 cm² effective area at 1 keV, 180 cm² at 6 keV. 10 co-aligned Wolter-type concentrators, 30 nested mirror shells each, gold-coated reflecting surfaces.</div></div>
+            <div>
+              <div class="ft">X-ray Instrument</div>
+              <div class="fd">200 cm² effective area at 1 keV, 180 cm² at 6 keV. 10 co-aligned Wolter-type
+                concentrators, 30 nested mirror shells each, gold-coated reflecting surfaces.</div>
+            </div>
           </div>
           <div class="feature-item">
             <div class="fn">02</div>
-            <div><div class="ft">Attitude & Orbit Control</div><div class="fd">4× Rocket Lab RW3-0.06 reaction wheels in tetrahedral configuration. Star trackers provide 7 arcsec pointing accuracy. APE ≤ 240 arcsec.</div></div>
+            <div>
+              <div class="ft">Attitude & Orbit Control</div>
+              <div class="fd">4× Rocket Lab RW3-0.06 reaction wheels in tetrahedral configuration. Star trackers provide
+                7 arcsec pointing accuracy. APE ≤ 240 arcsec.</div>
+            </div>
           </div>
           <div class="feature-item">
             <div class="fn">03</div>
-            <div><div class="ft">Propulsion — Dawn SD5</div><div class="fd">Bipropellant N₂O / propylene system. 26.97 m/s total ΔV budget including 10 m/s margin. Total impulse 4.31 kNs.</div></div>
+            <div>
+              <div class="ft">Propulsion — Dawn SD5</div>
+              <div class="fd">Bipropellant N₂O / propylene system. 26.97 m/s total ΔV budget including 10 m/s margin.
+                Total impulse 4.31 kNs.</div>
+            </div>
           </div>
           <div class="feature-item">
             <div class="fn">04</div>
-            <div><div class="ft">Power System</div><div class="fd">SparkWing solar arrays with SADM, 0.76 m² area at 50V. 296 Whr battery capacity. Designed for 5-year EOL degradation.</div></div>
+            <div>
+              <div class="ft">Power System</div>
+              <div class="fd">SparkWing solar arrays with SADM, 0.76 m² area at 50V. 296 Whr battery capacity. Designed
+                for 5-year EOL degradation.</div>
+            </div>
           </div>
         </div>
       </div>
@@ -129,112 +171,112 @@
     <!-- SATELITE GEBEUREN -->
     <section id="satelite">
       <h2 class="section-title">Satelite info</h2>
-      <img src="/assets/images/satelite_basic.png" alt="the nebula explorer satelite"/>
+      <img src="/assets/images/satelite_basic.png" alt="the nebula explorer satelite" />
 
     </section>
 
-<div class="star-wrapper">
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-</div>
+    <div class="star-wrapper">
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+      <div class="star"></div>
+    </div>
 
 
   </main>
@@ -244,8 +286,9 @@
   </footer>
 
   <!-- Three.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-  <script src="scripts/hero.js" defer></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script> -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script> -->
+  <!-- <script src="scripts/hero.js" defer></script> -->
 </body>
+
 </html>

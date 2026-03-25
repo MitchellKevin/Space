@@ -1,3 +1,150 @@
+/* 3d model */
+/* MARK: Hover animation */
+.Satelite3d {
+    animation: --rotate 20s infinite linear;
+
+}
+
+@keyframes --rotate {
+    0% {
+        transform:
+            rotateX(0deg) rotateY(0deg);
+    }
+
+    100% {
+        transform:
+            rotateX(-360deg) rotateY(-2turn);
+    }
+}
+
+
+.Satelite3dScene {
+
+    --sateliteBaseMesure: 100px;
+    --bodyHeight: calc(2*var(--sateliteBaseMesure));
+    --bodyWidth: var(--sateliteBaseMesure);
+    --bodyDepth: calc(1.5*var(--sateliteBaseMesure));
+
+
+    perspective: 30rem;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    .Satelite3d {
+
+        transform-style: preserve-3d;
+
+        & .body {
+
+            transform-style: preserve-3d;
+            display: grid;
+            /* grid-area: 1/1; */
+
+            & .panelFront , .panelBack {
+                /* display: block;
+                grid-area: 1/1; */
+
+
+                width: var(--bodyWidth);
+                height: var(--bodyHeight);
+            }
+
+            & .panelLeft , .panelRight {
+                /* display: block;
+                grid-area: 1/1; */
+                background-color: red;
+
+
+                width: var(--bodyDepth);
+                height: var(--bodyHeight);
+            }
+
+            & .panelTop , .panelBottom {
+
+                /* display: block;
+                grid-area: 1/1; */
+
+
+                width: var(--bodyWidth);
+                height: var(--bodyDepth);
+
+            }
+
+            &>* {
+                /* width: var(--sateliteHeight2); */
+                /* aspect-ratio: 1; */
+                display: block;
+                grid-area: 1/1;
+                align-self: center;
+                justify-self: center;
+                background: hotpink;
+
+            }
+
+            & .panelFront {
+                /* aspect-ratio: 1/2; */
+
+                background-color: blue;
+
+                transform: translateZ(calc(var(--bodyDepth) /2));
+            }
+
+            & .panelBack {
+                /* aspect-ratio: 1/2; */
+                /* width: var(--bodyWidth);
+                height: var(--bodyHeight); */
+                background-color: red;
+                transform: rotateY(180deg) translateZ(calc(var(--bodyDepth) /2));
+
+            }
+
+            & .panelLeft {
+                /* width: var(--bodyDepth);
+                height: var(--bodyHeight); */
+                background-color: yellow;
+
+                transform: rotateY(90deg) translateZ(calc(var(--bodyWidth) / 2));
+
+            }
+
+            & .panelRight {
+                /* width: var(--bodyDepth);
+                height: var(--bodyHeight); */
+                background-color: yellow;
+
+                transform: rotateY(-90deg) translateZ(calc(var(--bodyWidth) / 2));
+
+            }
+
+            & .panelTop {
+                /* aspect-ratio: 1/1.5; */
+                /* width: var(--bodyWidth);
+                height: var(--bodyDepth); */
+                background-color: orange;
+
+                transform: rotateX(90deg) translateZ(calc( var(--bodyHeight)/2));
+
+            }
+
+            & .panelBottom {
+                /* width: var(--bodyWidth);
+                height: var(--bodyDepth); */
+                background-color: orange;
+
+                transform: rotateX(-90deg) translateZ(calc( var(--bodyHeight)/2));
+
+            }
+        }
+
+
+    }
+}
+
+
+
+
 /* page */
 main {
     /* position: relative; */
@@ -46,6 +193,7 @@ main {
 
 /* wrapper */
 .sateliteWrapper {
+    display: none;
     perspective: 20rem;
 
     position: fixed;
@@ -96,10 +244,14 @@ main {
 
 @keyframes rotateSatelite {
     0% {
-        transform: rotateY(0deg) translateZ(-18svw) ;
-    }  99% {
-        transform: rotateY(-180deg) translateZ(-18svw) ;
-    } 100% {
+        transform: rotateY(0deg) translateZ(-18svw);
+    }
+
+    99% {
+        transform: rotateY(-180deg) translateZ(-18svw);
+    }
+
+    100% {
         display: none;
     }
 }
@@ -111,16 +263,20 @@ main {
     100% {
         transform: rotateY(0deg) translateZ(-18svw) ;
     }
-        
+
 } */
 
 
 @keyframes zIndexSatelite {
     0% {
         z-index: 0;
-    } 50% {
+    }
+
+    50% {
         z-index: 0;
-    } 51% {
+    }
+
+    51% {
         z-index: 1;
     }
 }
