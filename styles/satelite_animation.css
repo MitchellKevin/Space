@@ -96,44 +96,30 @@ main {
 
 @keyframes rotateSatelite {
     0% {
-        transform: rotateY(0deg) translateZ(-15rem) ;
-        /* transform: translateZ(2rem); */
-    }
-
-    50% {
-    }
-
-    100% {
-        transform: rotateY(180deg) translateZ(-15rem) ;
+        transform: rotateY(0deg) translateZ(-18svw) ;
+    }  99% {
+        transform: rotateY(-180deg) translateZ(-18svw) ;
+    } 100% {
+        display: none;
     }
 }
 
+/* @keyframes animationAbout {
+    0% {
+        transform: rotateY(-180deg) translateZ(-18svw) ;
+    }
+    100% {
+        transform: rotateY(0deg) translateZ(-18svw) ;
+    }
+} */
 
-/* works because z-index is rounded up at 50% */
+
 @keyframes zIndexSatelite {
     0% {
         z-index: 0;
     } 50% {
         z-index: 0;
-
     } 51% {
         z-index: 1;
     }
 }
-
-
-
-/* @keyframes rotateSatelite {
-    0% {
-        translate: 0;
-        z-index: 0;
-
-    } 50% {
-        z-index: 1;
-        translate: -40svw;
-    }100% {
-        rotate: 1.5turn;
-        translate: 0;
-
-    }
-} */
