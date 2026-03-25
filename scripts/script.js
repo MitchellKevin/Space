@@ -111,15 +111,15 @@ star.style.setProperty('--star-color', `oklch(0.7 0.2 ${hue})`);
 star.dataset.depth = depth;
 });
 
-document.addEventListener('mousemove', (event) => {
-const centerX = window.innerWidth / 2;
-const centerY = window.innerHeight / 2;
+// document.addEventListener('mousemove', (event) => {
+// const centerX = window.innerWidth / 2;
+// const centerY = window.innerHeight / 2;
 
-stars.forEach((star) => {
-    const depth = Number(star.dataset.depth);
-    const x = (event.clientX - centerX) * depth / 300;
-    const y = (event.clientY - centerY) * depth / 300;
+// stars.forEach((star) => {
+//     const depth = Number(star.dataset.depth);
+//     const x = (event.clientX - centerX) * depth / 300;
+//     const y = (event.clientY - centerY) * depth / 300;
 
-    star.style.transform = `translate(${x}px, ${y}px)`;
-});
-});
+//     star.style.transform = `translate(${x}px, ${y}px)`;
+// });
+// });
