@@ -1,0 +1,23 @@
+.star-wrapper {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.star {
+    position: absolute;
+    top: var(--star-top);
+    left: var(--star-left);
+    width: var(--star-size);
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background-color: white;
+
+    filter:
+      drop-shadow(0 0 calc(var(--star-size) * 0.5) var(--star-color))
+      drop-shadow(0 0 calc(var(--star-size) * 2) white);
+
+    mix-blend-mode: hard-light;
+}

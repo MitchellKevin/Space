@@ -38,7 +38,7 @@
       position:fixed; top:0; left:0; right:0; z-index:100;
       display:flex; align-items:center; justify-content:space-between;
       padding:22px 48px;
-      border-bottom:1px solid var(--border);
+      /* border-bottom:1px solid var(--border); */
       background:linear-gradient(to bottom, rgba(1,5,15,.92), transparent);
       backdrop-filter:blur(0);
     }
@@ -131,7 +131,7 @@
     .section { max-width:1360px; margin:0 auto; padding:120px 48px; }
 
     /* ABOUT */
-    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; background-color: black; }
     .tag { font-size:9px; letter-spacing:.3em; text-transform:uppercase; color:var(--accent); margin-bottom:22px; display:flex; align-items:center; gap:12px; }
     .tag::before { content:''; display:block; width:28px; height:1px; background:var(--accent); }
     .section-title { font-family:'Cormorant Garamond',serif; font-size:clamp(36px,4.5vw,62px); font-weight:300; line-height:1.08; color:var(--white); }
@@ -145,7 +145,7 @@
 
   
     /* FOOTER */
-    footer { border-top:1px solid var(--border); padding:28px 48px; display:flex; align-items:center; justify-content:space-between; }
+    footer { border-top:1px solid var(--border); padding:28px 48px; display:flex; align-items:center; justify-content:space-between; background-color: var(--deep); }
     .fl { font-family:'Bebas Neue',sans-serif; font-size:16px; letter-spacing:.2em; color:var(--muted); }
     .fl span { color:var(--accent); }
     .fc { font-size:9px; letter-spacing:.15em; text-transform:uppercase; color:rgba(160,210,255,.2); }
@@ -164,6 +164,5 @@
       #stats { grid-template-columns:1fr 1fr; padding:40px 20px; gap:24px; }
       .stat { border-right:none; padding:0; border-bottom:1px solid var(--border); padding-bottom:20px; }
       .about-grid { grid-template-columns:1fr; padding:60px 20px; }
-      footer { flex-direction:column; gap:16px; text-align:center; }
+      footer { flex-direction:column; gap:16px; text-align:center; background-color: var(--deep); }
     }
- 
