@@ -1,92 +1,117 @@
-// Import van Three.js en helpers (via CDN)
-import * as THREE from "https://cdn.skypack.dev/three@0.129.0/build/three.module.js";
-import { OrbitControls } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/controls/OrbitControls.js";
-import { GLTFLoader } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/GLTFLoader.js";
-import { RGBELoader } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/RGBELoader.js";
 
-// Maak een nieuwe scene
-const scene = new THREE.Scene();
+// satelite3D.js — gebruikt globale THREE, OrbitControls en GLTFLoader van CDN
 
-// Camera
-const camera = new THREE.PerspectiveCamera(
-  75, // field of view (hoe "wijd" je kijkt)
-  window.innerWidth / window.innerHeight, // aspect ratio
-  0.1, // dichtbij clippen
-  1000 // ver clippen
-);
+(function () {
+  const canvas   = document.getElementById('sat-canvas');
+  const viewer   = document.getElementById('sat-viewer');
+  const loading  = document.getElementById('sat-loading');
+  const fill     = document.getElementById('sat-fill');
+  const loadText = document.getElementById('sat-loading-text');
 
-// Variabelen voor object en controls
-let object;
-let controls;
+  if (!canvas || !viewer) return;
 
+  // ── Renderer ───────────────────────────────────────────────────────────────
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  renderer.setSize(viewer.clientWidth, viewer.clientHeight);
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.2;
+  renderer.setClearColor(0x000000, 0);
+  renderer.shadowMap.enabled = true;
 
-// Naam van de map waarin je model zit
-let objToRender = 'sateliet';
+  // ── Scene & Camera ─────────────────────────────────────────────────────────
+  const scene  = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(
+    45,
+    viewer.clientWidth / viewer.clientHeight,
+    0.01,
+    1000
+  );
+  camera.position.set(3, 1.5, 3);
 
-// Loader voor .gltf en .glb bestanden
-const loader = new GLTFLoader();
+  // ── Lights ─────────────────────────────────────────────────────────────────
+  const sunLight = new THREE.DirectionalLight(0xffe8c0, 2.5);
+  sunLight.position.set(5, 8, 5);
+  sunLight.castShadow = true;
+  scene.add(sunLight);
 
-// Laad het 3D model (.glb bestand)
-loader.load(
-  `./models/${objToRender}/Satteliet_v8.glb`, // pad naar je model
+  const fillLight = new THREE.DirectionalLight(0xa8d8ff, 0.4);
+  fillLight.position.set(-5, -2, -5);
+  scene.add(fillLight);
 
-  function (gltf) {
-    // Wordt uitgevoerd als het model geladen is
+  scene.add(new THREE.AmbientLight(0x0a1428, 2));
 
-    object = gltf.scene; // pak de scene uit het bestand
-    scene.add(object);   // voeg het model toe aan je scene
+  const rimLight = new THREE.DirectionalLight(0x7ecfff, 0.6);
+  rimLight.position.set(0, -5, -8);
+  scene.add(rimLight);
 
-    // Pas schaal aan (handig als model te groot/klein is)
-    object.scale.set(5, 5, 5);
+  // ── OrbitControls ──────────────────────────────────────────────────────────
+  const controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls.enableDamping   = true;
+  controls.dampingFactor   = 0.06;
+  controls.autoRotate      = true;
+  controls.autoRotateSpeed = 0.6;
+  controls.minDistance     = 1;
+  controls.maxDistance     = 20;
+  controls.enablePan       = false;
 
-    // Eventueel positie aanpassen
-    object.position.set(0, -5, 0);
-  },
+  // ── GLB laden ──────────────────────────────────────────────────────────────
+  const loader = new THREE.GLTFLoader();
 
-  function (error) {
-    // Error handling
-    console.error('Fout bij laden van model:', error);
+  // 👇 Verander dit pad naar jouw .glb bestand
+  loader.load(
+  `./models/${objToRender}/Satteliet_v8.glb`,
+
+    (gltf) => {
+      const model = gltf.scene;
+
+      // Auto-centreer en schaal het model
+      const box    = new THREE.Box3().setFromObject(model);
+      const size   = box.getSize(new THREE.Vector3());
+      const center = box.getCenter(new THREE.Vector3());
+      const maxDim = Math.max(size.x, size.y, size.z);
+      const scale  = 2.5 / maxDim;
+
+      model.scale.setScalar(scale);
+      model.position.sub(center.multiplyScalar(scale));
+
+      scene.add(model);
+
+      // Loader verbergen
+      if (loading) {
+        loading.classList.add('hidden');
+        setTimeout(() => { loading.style.display = 'none'; }, 700);
+      }
+    },
+
+    (xhr) => {
+      if (xhr.lengthComputable) {
+        const pct = Math.round((xhr.loaded / xhr.total) * 100);
+        if (fill)     fill.style.width = pct + '%';
+        if (loadText) loadText.textContent = `Loading model — ${pct}%`;
+      }
+    },
+
+    (err) => {
+      console.error('GLB laad fout:', err);
+      if (loadText) loadText.textContent = 'Model niet beschikbaar';
+    }
+  );
+
+  // ── Resize ─────────────────────────────────────────────────────────────────
+  window.addEventListener('resize', () => {
+    camera.aspect = viewer.clientWidth / viewer.clientHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(viewer.clientWidth, viewer.clientHeight);
+  });
+
+  // ── Render loop ────────────────────────────────────────────────────────────
+  function animate() {
+    requestAnimationFrame(animate);
+    controls.update();
+    renderer.render(scene, camera);
   }
-);
+  animate();
 
-// Renderer (dit tekent alles op het scherm)
-const renderer = new THREE.WebGLRenderer({ alpha: true });
-
-// Stel grootte in (fullscreen)
-renderer.setSize(window.innerWidth, window.innerHeight);
-
-// Voeg canvas toe aan HTML (div met id "container3D")
-document.getElementById("container3D").appendChild(renderer.domElement);
-
-// Zet camera iets naar achter zodat je het model ziet
-camera.position.z = 25;
-
-// Licht van boven (Directional light)
-const topLight = new THREE.DirectionalLight(0xffffff, 1);
-topLight.position.set(0, 500, 500);
-scene.add(topLight);
-
-// Ambient light (algemene verlichting)
-const ambientLight = new THREE.AmbientLight(0x333333, 20);
-scene.add(ambientLight);
-
-// Controls om met muis te roteren/zoomen
-controls = new OrbitControls(camera, renderer.domElement);
-
-// Animatie loop (wordt elke frame uitgevoerd)
-function animate() {
-  requestAnimationFrame(animate);
-
-  // Render de scene vanuit de camera
-  renderer.render(scene, camera);
-}
-
-// Zorg dat alles schaalt bij resize van het scherm
-window.addEventListener("resize", function () {
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-});
-
-// Start de animatie
-animate();
+})();
