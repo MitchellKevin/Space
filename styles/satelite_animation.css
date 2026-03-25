@@ -1,7 +1,8 @@
 /* page */
 
 main {
-    position: relative;
+    /* position: relative; */
+    /* perspective: 20rem; */
 
     timeline-scope: --heroTrigger, --aboutTrigger, --sateliteTrigger;
 }
@@ -10,7 +11,10 @@ main {
 
 /* wrapper */
 #heroWrapper {
-    height: 200svh;
+    height: 150svh;
+    view-timeline-name: --heroTrigger;
+
+    transform-style: preserve-3d;
 
 }
 
@@ -19,8 +23,12 @@ main {
     position: sticky;
     height: 100svh;
     top: 0;
-    view-timeline-name: --heroTrigger;
 
+    transform-style: preserve-3d;
+}
+
+.hero-content {
+    transform-style: preserve-3d;
 
 }
 
@@ -49,33 +57,105 @@ main {
     /* display: none; */
     /* background: hotpink; */
 
-    position: absolute;
+    /* perspective: 20rem; */
+
+    position: fixed;
     height: 100%;
-    left: 50%;
+    width: 100svw;
+
+    transform-style: preserve-3d;
+    z-index: 1;
+
+    /* animation-name: zIndexSatelite; */
+    animation-timeline: --heroTrigger;
+    animation-range: exit-crossing 0% entry-crossing 100%;
+    animation-fill-mode: both;
+
+    --sateliteWidth: 100px;
+    --sateliteHeight: 150px;
 }
+
+.stickyContainer {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* transform-style: preserve-3d; */
+
+}
+
+
 
 /* satelite */
 .sateliteAnimation {
-    width: 300px;
-    height: auto;
+    /* position: absolute; */
+    /*! width aanpassen naar wat we nodig hebben */
+    width: var(--sateliteWidth);
+    height: var(--sateliteHeight);
 
-    position: sticky;
-    top: 0;
+    /* top: 50%; */
+    /* top: calc(50% + var(--sateliteHeight)/2); */
+    /* left: calc(50% - var(--sateliteWidth)/2); */
 
-    animation-name: rotateSatelite;
+    transform-style: preserve-3d;
+    /* transform: translateY(100%) translateZ(100px); */
+
+    /* animation-name: rotateSatelite; */
     animation-timeline: --heroTrigger;
-    /* animation-timeline: scroll(); */
-    /* animation-timeline: --heroTrigger, --aboutTrigger, --sateliteTrigger; */
-    animation-range: entry 100svh cover;
-    /* animation-range: entry 0% cover 100%; */
+    animation-range: exit-crossing 0% entry-crossing 100%;
     animation-fill-mode: both;
+
+    /* transform: translateZ(3rem); */
+
 
 }
 
 /* keyframes */
 
 @keyframes rotateSatelite {
-    to {
-        rotate: 1.5turn;
+    0% {
+        /* transform: translateZ(-2rem) ; */
+        /* transform: translateZ(2rem); */
+    }
+
+    50% {
+    }
+
+    100% {
+        /* transform: translateZ(2rem) ; */
+
     }
 }
+
+
+/* works because z-index is rounded up at 50% */
+@keyframes zIndexSatelite {
+    0% {
+        z-index: 0;
+    }
+
+    100% {
+
+        z-index: 1;
+    }
+}
+
+
+
+/* @keyframes rotateSatelite {
+    0% {
+        translate: 0;
+        z-index: 0;
+
+    } 50% {
+        z-index: 1;
+        translate: -40svw;
+    }100% {
+        rotate: 1.5turn;
+        translate: 0;
+
+    }
+} */

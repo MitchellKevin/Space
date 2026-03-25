@@ -34,8 +34,8 @@
     ctrl.dampingFactor  = 0.05;
     ctrl.minDistance=3;
     ctrl.maxDistance=100;
-    ctrl.autoRotate     = true;
-    ctrl.autoRotateSpeed = 0.5;
+    // ctrl.autoRotate     = true;
+    // ctrl.autoRotateSpeed = 0.5;
     ctrl.enableZoom=false;
   // ctrl.enableDamping=true;ctrl.dampingFactor=.05;ctrl.autoRotate=false;ctrl.minDistance=2;ctrl.maxDistance=10;ctrl.enableZoom=false;ctrl.enablePan=false;
 
