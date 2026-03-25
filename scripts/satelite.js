@@ -1,5 +1,8 @@
 
 // satelite3D.js — gebruikt globale THREE, OrbitControls en GLTFLoader van CDN
+fetch('./models/sateliet/satelite_v8.glb')
+  .then(r => console.log('Status:', r.status, r.url))
+  .catch(e => console.error('Fetch error:', e));
 
 (function () {
   const canvas   = document.getElementById('sat-canvas');
@@ -61,7 +64,8 @@
 
   // 👇 Verander dit pad naar jouw .glb bestand
   loader.load(
-  `./models/${objToRender}/Satteliet_v8.glb`,
+  `./models/sateliet/Satteliet_v8.glb`,
+
 
     (gltf) => {
       const model = gltf.scene;
@@ -99,6 +103,8 @@
     }
   );
 
+
+  
   // ── Resize ─────────────────────────────────────────────────────────────────
   window.addEventListener('resize', () => {
     camera.aspect = viewer.clientWidth / viewer.clientHeight;
