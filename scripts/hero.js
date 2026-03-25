@@ -13,8 +13,6 @@ const targetZ = 3;
 //   });
 // }
 
-
-
   // ── Cursor ──────────────────────────────────────────────
   const cur=document.getElementById('cur'),curR=document.getElementById('curR');
   let mx=0,my=0,rx=0,ry=0;
@@ -22,7 +20,6 @@ const targetZ = 3;
   (function mc(){requestAnimationFrame(mc);rx+=(mx-rx)*.4;ry+=(my-ry)*.4;cur.style.left=mx+'px';cur.style.top=my+'px';curR.style.left=rx+'px';curR.style.top=ry+'px';})();
 
 const mouse = { x: 0, y: 0 };
-
 
 window.addEventListener("mousemove", (e) => {
   mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
