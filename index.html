@@ -9,7 +9,8 @@
   <link rel="stylesheet" href="styles/root.css">
   <link rel="stylesheet" href="styles/style.css">
   <link rel="stylesheet" href="styles/hero.css">
-  <link rel="stylesheet" href="styles/stars.css"> 
+  <link rel="stylesheet" href="styles/stars.css">
+  <link rel="stylesheet" href="styles/satelite3D.css"> 
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet">
   <script src="scripts/script.js" defer></script>
 </head>
@@ -121,9 +122,9 @@
     <!-- SATELITE GEBEUREN -->
     <section id="satelite">
                 <h2 class="section-title">Satelite info</h2>
-                <img src="/assets/images/satelite_basic.png" alt="the nebula explorer satelite"/>
-
     </section>
+
+    <div id="container3D"></div>
 
 <div class="star-wrapper">
     <div class="star"></div>
@@ -237,6 +238,7 @@
 
   <!-- Three.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script type="module" src="scripts/satelite.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
   <script src="scripts/hero.js" defer></script>
 </body>
