@@ -21,6 +21,14 @@ const targetZ = 3;
   document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
   (function mc(){requestAnimationFrame(mc);rx+=(mx-rx)*.12;ry+=(my-ry)*.12;cur.style.left=mx+'px';cur.style.top=my+'px';curR.style.left=rx+'px';curR.style.top=ry+'px';})();
 
+const mouse = { x: 0, y: 0 };
+
+
+window.addEventListener("mousemove", (e) => {
+  mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+  mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+});
+
   // ── Scroll reveal ────────────────────────────────────────
   const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');}),{threshold:.1});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
@@ -82,15 +90,6 @@ const targetZ = 3;
   pivot.add(new THREE.Mesh(new THREE.SphereGeometry(1.055,48,48),new THREE.MeshPhongMaterial({color:0x2255cc,transparent:true,opacity:.06,side:THREE.FrontSide,depthWrite:false})));
   pivot.add(new THREE.Mesh(new THREE.SphereGeometry(1.16,48,48),new THREE.MeshPhongMaterial({color:0x1133aa,transparent:true,opacity:.025,side:THREE.BackSide,depthWrite:false})));
 
-  // const sateliteGeo = new THREE.SphereGeometry(3.2, 30, 30);
-  // const sateliteMat = new THREE.MeshBasicMaterial({
-  //   map: TextureLoader.load(mercuryTexture)
-  // })
-  // const satelite = new THREE.Mesh(sateliteGeo, sateliteMat);
-  // pivot.add(satelite);
-  // satelite.position.x = 28;
-
-
   window.addEventListener('resize',()=>{camera.aspect=heroEl.clientWidth/heroEl.clientHeight;camera.updateProjectionMatrix();renderer.setSize(heroEl.clientWidth,heroEl.clientHeight);});
 
   const TOFF=Math.PI,cDR=(2*Math.PI)/(10*24*3600);
@@ -103,6 +102,16 @@ if (Math.abs(targetZ - camZ) < 0.0001) {
   camZ = targetZ;
 }
 
+const parallaxStrength = 0.1;
+
+// target offset
+const targetX = mouse.x * parallaxStrength;
+const targetY = mouse.y * parallaxStrength;
+
+// smooth it
+ctrl.target.x += (targetX - ctrl.target.x) * 0.05;
+ctrl.target.y += (targetY - ctrl.target.y) * 0.05;
+
 camera.position.z = camZ;
     
     requestAnimationFrame(anim);
@@ -111,7 +120,11 @@ camera.position.z = camZ;
     earth.rotation.y=-(360-23.5);
     const sd=getSun(now);sunLight.position.copy(sd).multiplyScalar(50);
     [nO,term].forEach(m=>{if(m.material.userData.shader)m.material.userData.shader.uniforms.sunDir.value.copy(sd);});
-    ctrl.update();renderer.render(scene,camera);}
+    ctrl.update();renderer.render(scene,camera);
+  
     
+  }
+    
+
   anim(performance.now());
 
