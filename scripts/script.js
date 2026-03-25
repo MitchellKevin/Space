@@ -90,3 +90,17 @@
 //       controls.update();
 //       renderer.render(scene, camera);
 //     })();
+
+const stars = document.querySelectorAll('.star');
+
+stars.forEach(star => {
+const size = Math.random() * 2 + 1; // 1-3 px
+const top = Math.random() * 100;
+const left = Math.random() * 100;
+const hue = Math.random() * 360;
+
+star.style.setProperty('--star-size', `${size}px`);
+star.style.top = `${top}%`;
+star.style.left = `${left}%`;
+star.style.setProperty('--star-color', `oklch(0.7 0.2 ${hue})`);
+});

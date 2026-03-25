@@ -1,0 +1,14 @@
+.star {
+    background-color: white;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    width: var(--star-size);
+    position: fixed;
+
+    filter:
+      drop-shadow(0 0 calc(var(--star-size) * 0.5) var(--star-color))
+      drop-shadow(0 0 calc(var(--star-size) * 2) white);
+
+    mix-blend-mode: hard-light;
+    z-index: -10;
+}
