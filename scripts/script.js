@@ -8,14 +8,14 @@
 //     renderer.setSize(innerWidth, innerHeight);
 //     document.body.appendChild(renderer.domElement);
 
-    // // ── Controls ───────────────────────────────────────────────────────────
-    // const controls = new THREE.OrbitControls(camera, renderer.domElement);
-    // controls.enableDamping  = true;
-    // controls.dampingFactor  = 0.05;
-    // controls.minDistance    = 1.3;
-    // controls.maxDistance    = 6;
-    // controls.autoRotate     = true;
-    // controls.autoRotateSpeed = 0.5;
+// // ── Controls ───────────────────────────────────────────────────────────
+// const controls = new THREE.OrbitControls(camera, renderer.domElement);
+// controls.enableDamping  = true;
+// controls.dampingFactor  = 0.05;
+// controls.minDistance    = 1.3;
+// controls.maxDistance    = 6;
+// controls.autoRotate     = true;
+// controls.autoRotateSpeed = 0.5;
 
 //     // ── Sterrenachtergrond ─────────────────────────────────────────────────
 //     const starGeo = new THREE.BufferGeometry();
@@ -45,16 +45,16 @@
 //     const earth = new THREE.Mesh(earthGeo, earthMat);
 //     scene.add(earth);
 
-    // // ── Wolken ─────────────────────────────────────────────────────────────
-    // const cloudGeo = new THREE.SphereGeometry(1.01, 64, 64);
-    // const cloudMat = new THREE.MeshPhongMaterial({
-    //   map:         loader.load('https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/planets/earth_clouds_1024.png'),
-    //   transparent: true,
-    //   opacity:     0.35,
-    //   depthWrite:  false,
-    // });
-    // const clouds = new THREE.Mesh(cloudGeo, cloudMat);
-    // scene.add(clouds);
+// // ── Wolken ─────────────────────────────────────────────────────────────
+// const cloudGeo = new THREE.SphereGeometry(1.01, 64, 64);
+// const cloudMat = new THREE.MeshPhongMaterial({
+//   map:         loader.load('https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/textures/planets/earth_clouds_1024.png'),
+//   transparent: true,
+//   opacity:     0.35,
+//   depthWrite:  false,
+// });
+// const clouds = new THREE.Mesh(cloudGeo, cloudMat);
+// scene.add(clouds);
 
 //     // ── Atmosfeer gloed ────────────────────────────────────────────────────
 //     const atmGeo = new THREE.SphereGeometry(1.05, 64, 64);
@@ -91,35 +91,34 @@
 //       renderer.render(scene, camera);
 //     })();
 
-
 // random ster positie
-const stars = document.querySelectorAll('.star');
+// const stars = document.querySelectorAll('.star');
 
-stars.forEach((star) => {
-const size = Math.random() * 2 + 1; // 1–3 px
-const top = Math.random() * 100;
-const left = Math.random() * 100;
-const hue = Math.random() * 360;
+// stars.forEach((star) => {
+// const size = Math.random() * 2 + 1; // 1–3 px
+// const top = Math.random() * 100;
+// const left = Math.random() * 100;
+// const hue = Math.random() * 360;
 
 // elke ster krijgt zijn eigen parallax-sterkte
-const depth = (Math.random() * 30 - 15).toFixed(2); // -15 t/m 15
+// const depth = (Math.random() * 30 - 15).toFixed(2); // -15 t/m 15
 
-star.style.setProperty('--star-size', `${size}px`);
-star.style.setProperty('--star-top', `${top}%`);
-star.style.setProperty('--star-left', `${left}%`);
-star.style.setProperty('--star-color', `oklch(0.7 0.2 ${hue})`);
-star.dataset.depth = depth;
-});
+// star.style.setProperty('--star-size', `${size}px`);
+// star.style.setProperty('--star-top', `${top}%`);
+// star.style.setProperty('--star-left', `${left}%`);
+// star.style.setProperty('--star-color', `oklch(0.7 0.2 ${hue})`);
+// star.dataset.depth = depth;
+// });
 
-document.addEventListener('mousemove', (event) => {
-const centerX = window.innerWidth / 2;
-const centerY = window.innerHeight / 2;
+// document.addEventListener('mousemove', (event) => {
+// const centerX = window.innerWidth / 2;
+// const centerY = window.innerHeight / 2;
 
-stars.forEach((star) => {
-    const depth = Number(star.dataset.depth);
-    const x = (event.clientX - centerX) * depth / 300;
-    const y = (event.clientY - centerY) * depth / 300;
+// stars.forEach((star) => {
+//     const depth = Number(star.dataset.depth);
+//     const x = (event.clientX - centerX) * depth / 300;
+//     const y = (event.clientY - centerY) * depth / 300;
 
-    star.style.transform = `translate(${x}px, ${y}px)`;
-});
-});
+//     star.style.transform = `translate(${x}px, ${y}px)`;
+// });
+// });
