@@ -11,3 +11,7 @@ img {
 
 }
 
+html, body {
+   -webkit-overflow-scrolling: touch;
+}
+
