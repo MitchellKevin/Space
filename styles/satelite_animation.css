@@ -20,10 +20,11 @@
 
 .Satelite3dScene {
 
-    --sateliteBaseMesure: 100px;
-    --bodyHeight: calc(2*var(--sateliteBaseMesure));
-    --bodyWidth: var(--sateliteBaseMesure);
-    --bodyDepth: calc(1.5*var(--sateliteBaseMesure));
+    --sateliteBase: 100px;
+    --bodyHeight: calc(2*var(--sateliteBase));
+    --bodyWidth: var(--sateliteBase);
+    --bodyDepth: calc(1.5*var(--sateliteBase));
+
 
 
     perspective: 30rem;
@@ -36,109 +37,231 @@
 
         transform-style: preserve-3d;
 
+        display: grid;
+
+        &>* {
+            grid-area: 1/1;
+            align-self: center;
+            justify-self: center;
+        }
+
         & .body {
+
+            --Height: calc(2*var(--sateliteBase));
+            --Width: var(--sateliteBase);
+            --Depth: calc(1.5*var(--sateliteBase));
 
             transform-style: preserve-3d;
             display: grid;
-            /* grid-area: 1/1; */
 
-            & .panelFront , .panelBack {
-                /* display: block;
-                grid-area: 1/1; */
-
-
-                width: var(--bodyWidth);
-                height: var(--bodyHeight);
+            & .panelFront,
+            .panelBack {
+                width: var(--Width);
+                height: var(--Height);
             }
 
-            & .panelLeft , .panelRight {
-                /* display: block;
-                grid-area: 1/1; */
+            & .panelLeft,
+            .panelRight {
                 background-color: red;
-
-
-                width: var(--bodyDepth);
-                height: var(--bodyHeight);
+                width: var(--Depth);
+                height: var(--Height);
             }
 
-            & .panelTop , .panelBottom {
-
-                /* display: block;
-                grid-area: 1/1; */
-
-
-                width: var(--bodyWidth);
-                height: var(--bodyDepth);
+            & .panelTop,
+            .panelBottom {
+                width: var(--Width);
+                height: var(--Depth);
 
             }
 
             &>* {
-                /* width: var(--sateliteHeight2); */
-                /* aspect-ratio: 1; */
                 display: block;
                 grid-area: 1/1;
                 align-self: center;
                 justify-self: center;
                 background: hotpink;
-
             }
 
             & .panelFront {
-                /* aspect-ratio: 1/2; */
-
                 background-color: blue;
-
-                transform: translateZ(calc(var(--bodyDepth) /2));
+                transform: translateZ(calc(var(--Depth) /2));
             }
 
             & .panelBack {
-                /* aspect-ratio: 1/2; */
-                /* width: var(--bodyWidth);
-                height: var(--bodyHeight); */
                 background-color: red;
-                transform: rotateY(180deg) translateZ(calc(var(--bodyDepth) /2));
-
+                transform: rotateY(180deg) translateZ(calc(var(--Depth) /2));
             }
 
             & .panelLeft {
-                /* width: var(--bodyDepth);
-                height: var(--bodyHeight); */
                 background-color: yellow;
-
-                transform: rotateY(90deg) translateZ(calc(var(--bodyWidth) / 2));
-
+                transform: rotateY(90deg) translateZ(calc(var(--Width) / 2));
             }
 
             & .panelRight {
-                /* width: var(--bodyDepth);
-                height: var(--bodyHeight); */
                 background-color: yellow;
-
-                transform: rotateY(-90deg) translateZ(calc(var(--bodyWidth) / 2));
-
+                transform: rotateY(-90deg) translateZ(calc(var(--Width) / 2));
             }
 
             & .panelTop {
-                /* aspect-ratio: 1/1.5; */
-                /* width: var(--bodyWidth);
-                height: var(--bodyDepth); */
                 background-color: orange;
-
-                transform: rotateX(90deg) translateZ(calc( var(--bodyHeight)/2));
-
+                transform: rotateX(90deg) translateZ(calc(var(--Height)/2));
             }
 
             & .panelBottom {
-                /* width: var(--bodyWidth);
-                height: var(--bodyDepth); */
                 background-color: orange;
-
-                transform: rotateX(-90deg) translateZ(calc( var(--bodyHeight)/2));
-
+                transform: rotateX(-90deg) translateZ(calc(var(--Height)/2));
             }
         }
 
+        & .leftPanel,
+        .rightPanel {
 
+            --Height: calc(2*var(--sateliteBase));
+            --Width: var(--sateliteBase);
+            --Depth: calc(var(--sateliteBase)/10);
+
+            transform-style: preserve-3d;
+            display: grid;
+
+            & .panelFront,
+            .panelBack {
+                width: var(--Width);
+                height: var(--Height);
+            }
+
+            & .panelLeft,
+            .panelRight {
+                background-color: red;
+                width: var(--Depth);
+                height: var(--Height);
+            }
+
+            & .panelTop,
+            .panelBottom {
+                width: var(--Width);
+                height: var(--Depth);
+
+            }
+
+            &>* {
+                display: block;
+                grid-area: 1/1;
+                align-self: center;
+                justify-self: center;
+                background: hotpink;
+            }
+
+            & .panelFront {
+                background-color: blue;
+                transform: translateZ(calc(var(--Depth) /2));
+            }
+
+            & .panelBack {
+                background-color: red;
+                transform: rotateY(180deg) translateZ(calc(var(--Depth) /2));
+            }
+
+            & .panelLeft {
+                background-color: yellow;
+                transform: rotateY(90deg) translateZ(calc(var(--Width) / 2));
+            }
+
+            & .panelRight {
+                background-color: yellow;
+                transform: rotateY(-90deg) translateZ(calc(var(--Width) / 2));
+            }
+
+            & .panelTop {
+                background-color: orange;
+                transform: rotateX(90deg) translateZ(calc(var(--Height)/2));
+            }
+
+            & .panelBottom {
+                background-color: orange;
+                transform: rotateX(-90deg) translateZ(calc(var(--Height)/2));
+            }
+        }
+
+        & .detailBox {
+
+            --Height: calc(var(--sateliteBase)/2);
+            --Width: calc(var(--sateliteBase)/2);
+            --Depth: calc(var(--sateliteBase)/3);
+
+            transform-style: preserve-3d;
+            display: grid;
+
+            & .panelFront,
+            .panelBack {
+                width: var(--Width);
+                height: var(--Height);
+            }
+
+            & .panelLeft,
+            .panelRight {
+                background-color: red;
+                width: var(--Depth);
+                height: var(--Height);
+            }
+
+            & .panelTop,
+            .panelBottom {
+                width: var(--Width);
+                height: var(--Depth);
+
+            }
+
+            &>* {
+                display: block;
+                grid-area: 1/1;
+                align-self: center;
+                justify-self: center;
+                background: hotpink;
+            }
+
+            & .panelFront {
+                background-color: blue;
+                transform: translateZ(calc(var(--Depth) /2));
+            }
+
+            & .panelBack {
+                background-color: red;
+                transform: rotateY(180deg) translateZ(calc(var(--Depth) /2));
+            }
+
+            & .panelLeft {
+                background-color: yellow;
+                transform: rotateY(90deg) translateZ(calc(var(--Width) / 2));
+            }
+
+            & .panelRight {
+                background-color: yellow;
+                transform: rotateY(-90deg) translateZ(calc(var(--Width) / 2));
+            }
+
+            & .panelTop {
+                background-color: orange;
+                transform: rotateX(90deg) translateZ(calc(var(--Height)/2));
+            }
+
+            & .panelBottom {
+                background-color: orange;
+                transform: rotateX(-90deg) translateZ(calc(var(--Height)/2));
+            }
+        }
+
+         & .leftPanel {
+            transform: translateX(var(--bodyWidth)) translateZ(calc( var(--bodyDepth)/3));
+         }
+
+         & .rightPanel {
+            transform: rotateY(180deg) translateX(var(--bodyWidth)) translateZ(calc( var(--bodyDepth)/-3));
+         }
+
+         & .detailBox {
+            transform: translateZ(calc(var(--bodyDepth)/2));
+
+         }
     }
 }
 
