@@ -1,4 +1,4 @@
-const sterren = document.querySelectorAll("div");
+const sterren = document.querySelectorAll("#black div");
 
 sterren.forEach((ster) => {
   ster.style.setProperty("--dur", Math.random());

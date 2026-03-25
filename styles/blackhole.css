@@ -25,7 +25,7 @@ body {
   display: grid;
   place-items: center;
 
-  height: 100vh;
+  /* height: 100vh; */
   background: linear-gradient(black, rgb(0, 0, 20));
 }
 
@@ -50,7 +50,7 @@ body {
   }
 
   /* Stars */
-  div {
+  .zwartgat-ster {
     box-shadow: 20px 0px 10px 3px rgba(255, 255, 255, 0.05);
     grid-area: 1/1;
     height: calc(var(--radius) * 0.02);

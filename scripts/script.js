@@ -122,3 +122,456 @@
 //     star.style.transform = `translate(${x}px, ${y}px)`;
 // });
 // });
+
+// window.addEventListener("scroll", (event) => {          
+
+//   console.log(document.documentElement.scrollHeight - window.innerHeight);
+//     console.log(window.scrollY);
+// });
+
+const footer = document.getElementById("main-footer");
+let scrolledPassedBottom = false;
+
+window.addEventListener('wheel', (e) => {
+    const scrollTop = window.scrollY;
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    const tryingToScrollDown = e.deltaY > 0 && scrollTop >= maxScroll;
+    const scrollAmount = e.deltaY;
+
+    if (tryingToScrollDown && scrollAmount >= 100 && !scrolledPassedBottom) {
+        console.log("Trying to scroll below the bottom!");
+        scrolledPassedBottom = true;
+
+        console.log("hoppa");
+
+        footer.insertAdjacentHTML("afterend", `
+<section id="blackHole">
+        <section id="black">
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+            <div class="zwartgat-ster"></div>
+        </section>
+    </section>
+        `);
+    }
+}, { passive: true });
+
+
+// if (scrolledPassedBottom == true) {
+
+//     console.log("hoppa");
+
+//     //  passive: true -> makes sure that prevent default is not called so that the browswee does not have to wasit on a script while scrolling
+//     footer.insertAdjacentHTML("afterend", `
+// <p>testttt</p>
+
+// `)}
+
+
+// if (scrolledPassedBottom == true) {
+
+//     //  passive: true -> makes sure that prevent default is not called so that the browswee does not have to wasit on a script while scrolling
+//     footer.insertAdjacentHTML("afterend", `
+// <section id="blackHole">
+//         <section id="black">
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         <div></div>
+//         </section>
+//     </section>
+// `);
+// }
