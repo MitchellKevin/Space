@@ -91,16 +91,35 @@
 //       renderer.render(scene, camera);
 //     })();
 
+
+// random ster positie
 const stars = document.querySelectorAll('.star');
 
-stars.forEach(star => {
-const size = Math.random() * 2 + 1; // 1-3 px
+stars.forEach((star) => {
+const size = Math.random() * 2 + 1; // 1–3 px
 const top = Math.random() * 100;
 const left = Math.random() * 100;
 const hue = Math.random() * 360;
 
+// elke ster krijgt zijn eigen parallax-sterkte
+const depth = (Math.random() * 30 - 15).toFixed(2); // -15 t/m 15
+
 star.style.setProperty('--star-size', `${size}px`);
-star.style.top = `${top}%`;
-star.style.left = `${left}%`;
+star.style.setProperty('--star-top', `${top}%`);
+star.style.setProperty('--star-left', `${left}%`);
 star.style.setProperty('--star-color', `oklch(0.7 0.2 ${hue})`);
+star.dataset.depth = depth;
+});
+
+document.addEventListener('mousemove', (event) => {
+const centerX = window.innerWidth / 2;
+const centerY = window.innerHeight / 2;
+
+stars.forEach((star) => {
+    const depth = Number(star.dataset.depth);
+    const x = (event.clientX - centerX) * depth / 300;
+    const y = (event.clientY - centerY) * depth / 300;
+
+    star.style.transform = `translate(${x}px, ${y}px)`;
+});
 });
