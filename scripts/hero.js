@@ -1,8 +1,33 @@
-     // ── Cursor ──────────────────────────────────────────────
+ let camZ = 100;          // start (minDistance)
+const targetZ = 3;  
+
+// https://dev.to/clementgaudiniere/create-a-parallax-effect-when-the-mouse-moves-3km0
+// document.addEventListener("mousemove", parallax);
+// function parallax(event) {
+//   this.querySelectorAll(".hero-content").forEach((shift) => {
+//     const position = shift.getAttribute("value");
+//     const x = (window.innerWidth - event.pageX * position) / 90;
+//     const y = (window.innerHeight - event.pageY * position) / 90;
+
+//     shift.style.transform = `translateX(${x}px) translateY(${y}px)`;
+//   });
+// }
+
+
+
+  // ── Cursor ──────────────────────────────────────────────
   const cur=document.getElementById('cur'),curR=document.getElementById('curR');
   let mx=0,my=0,rx=0,ry=0;
   document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
   (function mc(){requestAnimationFrame(mc);rx+=(mx-rx)*.12;ry+=(my-ry)*.12;cur.style.left=mx+'px';cur.style.top=my+'px';curR.style.left=rx+'px';curR.style.top=ry+'px';})();
+
+const mouse = { x: 0, y: 0 };
+
+
+window.addEventListener("mousemove", (e) => {
+  mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+  mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+});
 
   // ── Scroll reveal ────────────────────────────────────────
   const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');}),{threshold:.1});
@@ -12,14 +37,12 @@
   function getGMST(d){const JD=d.getTime()/86400000+2440587.5,T=(JD-2451545)/36525;let s=24110.54841+8640184.812866*T+0.093104*T*T-6.2e-6*T*T*T;const U=d.getUTCHours()*3600+d.getUTCMinutes()*60+d.getUTCSeconds()+d.getUTCMilliseconds()/1000;s=((s+U*1.00273790935)%86400+86400)%86400;return(s/86400)*2*Math.PI;}
   function getObl(d){const T=(d.getTime()/86400000+2440587.5-2451545)/36525;return 23.439291111-0.013004167*T-0.000000164*T*T+0.000000504*T*T*T;}
   function getSun(d){const JD=d.getTime()/86400000+2440587.5,n=JD-2451545,L=(280.46+0.9856474*n)%360,g=((357.528+0.9856003*n)%360)*Math.PI/180,λ=(L+1.915*Math.sin(g)+0.02*Math.sin(2*g))*Math.PI/180,ε=getObl(d)*Math.PI/180,dec=Math.asin(Math.sin(ε)*Math.sin(λ)),ra=Math.atan2(Math.cos(ε)*Math.sin(λ),Math.cos(λ)),g2=getGMST(d);return new THREE.Vector3(Math.cos(dec)*Math.cos(ra-g2),Math.sin(dec),Math.cos(dec)*Math.sin(ra-g2)).normalize();}
-  function gmstHMS(r){const h=(r/(2*Math.PI))*24,hh=Math.floor(h)%24,mm=Math.floor((h%1)*60),ss=Math.floor(((h%1)*60%1)*60);return`${String(hh).padStart(2,'0')}:${String(mm).padStart(2,'0')}:${String(ss).padStart(2,'0')}`;}
 
 
   // ── Three.js ─────────────────────────────────────────────
   const heroEl=document.getElementById('hero');
   const scene=new THREE.Scene();
-  const camera=new THREE.PerspectiveCamera(42,heroEl.clientWidth/heroEl.clientHeight,0.01,2000);
-  camera.position.set(0,0.5,4); // further back = smaller globe
+  const camera=new THREE.PerspectiveCamera(42,heroEl.clientWidth/heroEl.clientHeight,0.01,2000); // further back = smaller globe
   const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});
   renderer.setPixelRatio(Math.min(devicePixelRatio,2));
   renderer.setSize(heroEl.clientWidth,heroEl.clientHeight);
@@ -36,7 +59,7 @@
     ctrl.maxDistance=100;
     ctrl.autoRotate     = true;
     ctrl.autoRotateSpeed = 0.5;
-    // ctrl.enableZoom=false;
+    ctrl.enableZoom=false;
   // ctrl.enableDamping=true;ctrl.dampingFactor=.05;ctrl.autoRotate=false;ctrl.minDistance=2;ctrl.maxDistance=10;ctrl.enableZoom=false;ctrl.enablePan=false;
 
   // // Stars
@@ -67,38 +90,41 @@
   pivot.add(new THREE.Mesh(new THREE.SphereGeometry(1.055,48,48),new THREE.MeshPhongMaterial({color:0x2255cc,transparent:true,opacity:.06,side:THREE.FrontSide,depthWrite:false})));
   pivot.add(new THREE.Mesh(new THREE.SphereGeometry(1.16,48,48),new THREE.MeshPhongMaterial({color:0x1133aa,transparent:true,opacity:.025,side:THREE.BackSide,depthWrite:false})));
 
-  
-  function latLon(lat,lon,r){const phi=(90-lat)*Math.PI/180,theta=(lon+180)*Math.PI/180;return new THREE.Vector3(-r*Math.sin(phi)*Math.cos(theta),r*Math.cos(phi),r*Math.sin(phi)*Math.sin(theta));}
-  const issMesh=new THREE.Mesh(new THREE.SphereGeometry(0.014,10,10),new THREE.MeshBasicMaterial({color:0x88ffcc}));
-  const issGlow=new THREE.Mesh(new THREE.SphereGeometry(0.026,10,10),new THREE.MeshBasicMaterial({color:0x44ffaa,transparent:true,opacity:.2,depthWrite:false}));
-  scene.add(issMesh);scene.add(issGlow);
-  const orbPos=new Float32Array(180*3);const orbGeo=new THREE.BufferGeometry();orbGeo.setAttribute('position',new THREE.BufferAttribute(orbPos,3));orbGeo.setDrawRange(0,0);
-  scene.add(new THREE.Line(orbGeo,new THREE.LineBasicMaterial({color:0x7ecfff,transparent:true,opacity:.35})));
-  let issH=[],issData=null;
-
-
   window.addEventListener('resize',()=>{camera.aspect=heroEl.clientWidth/heroEl.clientHeight;camera.updateProjectionMatrix();renderer.setSize(heroEl.clientWidth,heroEl.clientHeight);});
 
   const TOFF=Math.PI,cDR=(2*Math.PI)/(10*24*3600);
   let cD=0,lT=performance.now(),lH=0;
 
-  function anim(ts){requestAnimationFrame(anim);const dt=Math.min((ts-lT)/1000,.1);lT=ts;cD+=cDR*dt;
+  function anim(ts){
+    camZ += (targetZ - camZ) * 0.04;
+
+if (Math.abs(targetZ - camZ) < 0.0001) {
+  camZ = targetZ;
+}
+
+const parallaxStrength = 0.1;
+
+// target offset
+const targetX = mouse.x * parallaxStrength;
+const targetY = mouse.y * parallaxStrength;
+
+// smooth it
+ctrl.target.x += (targetX - ctrl.target.x) * 0.05;
+ctrl.target.y += (targetY - ctrl.target.y) * 0.05;
+
+camera.position.z = camZ;
+    
+    requestAnimationFrame(anim);
     const now=new Date(),gmst=getGMST(now),obl=getObl(now);
     pivot.rotation.z=obl*Math.PI/180;
-    earth.rotation.y=-(360-22.5);
+    earth.rotation.y=-(360-23.5);
     const sd=getSun(now);sunLight.position.copy(sd).multiplyScalar(50);
     [nO,term].forEach(m=>{if(m.material.userData.shader)m.material.userData.shader.uniforms.sunDir.value.copy(sd);});
-    if(issData){const lat=parseFloat(issData.latitude),lon=parseFloat(issData.longitude),alt=parseFloat(issData.altitude),vel=parseFloat(issData.velocity);
-      const lp=latLon(lat,lon,1+alt/6371);const ry2=earth.rotation.y,cos=Math.cos(ry2),sin=Math.sin(ry2);
-      const wp=new THREE.Vector3(lp.x*cos+lp.z*sin,lp.y,-lp.x*sin+lp.z*cos);
-      wp.applyQuaternion(new THREE.Quaternion().setFromEuler(pivot.rotation));
-      issMesh.position.copy(wp);issGlow.position.copy(wp);
-      issH.push(wp.clone());if(issH.length>180)issH.shift();
-      const arr=orbGeo.attributes.position.array;for(let i=0;i<issH.length;i++){arr[i*3]=issH[i].x;arr[i*3+1]=issH[i].y;arr[i*3+2]=issH[i].z;}
-      orbGeo.attributes.position.needsUpdate=true;orbGeo.setDrawRange(0,issH.length);
-      if(ts-lH>1000){document.getElementById('ds-alt').textContent=alt.toFixed(0)+' km';}
-    }
-    if(ts-lH>1000){lH=ts;const now2=new Date();const h=String(now2.getUTCHours()).padStart(2,'0'),m=String(now2.getUTCMinutes()).padStart(2,'0'),s=String(now2.getUTCSeconds()).padStart(2,'0');document.getElementById('ds-utc').textContent=`${h}:${m}:${s}`;document.getElementById('ds-gmst').textContent=gmstHMS(gmst);document.getElementById('ds-tilt').textContent=obl.toFixed(3)+'°';}
-    ctrl.update();renderer.render(scene,camera);}
+    ctrl.update();renderer.render(scene,camera);
+  
+    
+  }
+    
+
   anim(performance.now());
 
