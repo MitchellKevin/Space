@@ -57,7 +57,7 @@ main {
     /* display: none; */
     /* background: hotpink; */
 
-    /* perspective: 20rem; */
+    perspective: 20rem;
 
     position: fixed;
     height: 100%;
@@ -83,7 +83,7 @@ main {
     justify-content: center;
     align-items: center;
 
-    /* transform-style: preserve-3d; */
+    transform-style: preserve-3d;
 
 }
 
@@ -91,7 +91,6 @@ main {
 
 /* satelite */
 .sateliteAnimation {
-    /* position: absolute; */
     /*! width aanpassen naar wat we nodig hebben */
     width: var(--sateliteWidth);
     height: var(--sateliteHeight);
@@ -103,7 +102,7 @@ main {
     transform-style: preserve-3d;
     /* transform: translateY(100%) translateZ(100px); */
 
-    /* animation-name: rotateSatelite; */
+    animation-name: rotateSatelite;
     animation-timeline: --heroTrigger;
     animation-range: exit-crossing 0% entry-crossing 100%;
     animation-fill-mode: both;
@@ -117,7 +116,7 @@ main {
 
 @keyframes rotateSatelite {
     0% {
-        /* transform: translateZ(-2rem) ; */
+        transform: rotateY(0deg) translateZ(-15rem) ;
         /* transform: translateZ(2rem); */
     }
 
@@ -125,7 +124,7 @@ main {
     }
 
     100% {
-        /* transform: translateZ(2rem) ; */
+        transform: rotateY(360deg) translateZ(-15rem) ;
 
     }
 }
@@ -137,7 +136,7 @@ main {
         z-index: 0;
     }
 
-    100% {
+    50% {
 
         z-index: 1;
     }
