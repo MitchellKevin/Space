@@ -99,6 +99,7 @@ window.addEventListener("mousemove", (e) => {
     camZ += (targetZ - camZ) * 0.04;
 
 if (Math.abs(targetZ - camZ) < 0.0001) {
+  ctrl.autoRotate = false;
   camZ = targetZ;
 }
 
@@ -112,8 +113,10 @@ const targetY = mouse.y * parallaxStrength;
 ctrl.target.x += (targetX - ctrl.target.x) * 0.05;
 ctrl.target.y += (targetY - ctrl.target.y) * 0.05;
 
+
+
 camera.position.z = camZ;
-    
+
     requestAnimationFrame(anim);
     const now=new Date(),gmst=getGMST(now),obl=getObl(now);
     pivot.rotation.z=obl*Math.PI/180;
