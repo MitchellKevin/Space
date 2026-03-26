@@ -31,7 +31,7 @@ fetch('./models/sateliet/satelite_v8.glb')
     0.01,
     1000
   );
-camera.position.set(-2, .3, 3);
+camera.position.set(-2, -1.5, 3);
   // ── Lights ─────────────────────────────────────────────────────────────────
   const sunLight = new THREE.DirectionalLight(0xffe8c0, 2.5);
   sunLight.position.set(5, 8, 5);
