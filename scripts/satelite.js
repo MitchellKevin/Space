@@ -31,8 +31,7 @@ fetch('./models/sateliet/satelite_v8.glb')
     0.01,
     1000
   );
-  camera.position.set(-2, 1.5, 3);
-
+camera.position.set(-2, .3, 3);
   // ── Lights ─────────────────────────────────────────────────────────────────
   const sunLight = new THREE.DirectionalLight(0xffe8c0, 2.5);
   sunLight.position.set(5, 8, 5);
@@ -61,7 +60,6 @@ fetch('./models/sateliet/satelite_v8.glb')
   // ── GLB laden ──────────────────────────────────────────────────────────────
   const loader = new THREE.GLTFLoader();
 
-  // 👇 Verander dit pad naar jouw .glb bestand
   loader.load(
   `./models/sateliet/Satteliet_v8.glb`,
 

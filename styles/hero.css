@@ -128,7 +128,7 @@
     @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
     /* SECTION WRAPPER */
-    .section { max-width:1360px; margin:0 auto; padding:120px 48px; }
+    .section { max-width:1360px; margin:0 auto; padding:30px 30px; }
 
     /* ABOUT */
     .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; background-color: black; }
@@ -294,13 +294,12 @@ footer {
 
 /* SATELLITE VIEWER */
 #satelite { background: var(--bg); border-top: 1px solid var(--border); }
-#satelite .section { padding-bottom: 40px; }
+#satelite .section { padding-bottom: 40px;}
 
 #sat-viewer {
   position: relative;
   width: 100%;
   height: 100vh;
-  min-height: 500px;
   background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(126,207,255,0.04) 0%, transparent 70%);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
@@ -355,8 +354,8 @@ footer {
 
 .sat-details-overlay {
   position: absolute;
-  bottom: 24px;
-  left: 24px;
+  bottom: 120px;
+  left: 50px;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -408,7 +407,7 @@ footer {
 }
 
 .sat-detail[open] .sat-dot {
-  background: #7ecfff;
+  background: var(--accent);
 }
 
 .sat-detail p {
