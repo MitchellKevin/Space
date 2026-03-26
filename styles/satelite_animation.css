@@ -1,7 +1,255 @@
+/* 3d model */
+/* MARK: Hover animation */
+
+
+@keyframes --rotate {
+    0% {
+        transform:
+            rotateX(0deg) rotateY(0deg);
+    }
+
+    100% {
+        transform:
+            rotateX(-360deg) rotateY(-2turn);
+    }
+}
+
+.Satelite3dScene {
+
+    --sateliteBase: 10px;
+    --bodyHeight: calc(2*var(--sateliteBase));
+    --bodyWidth: var(--sateliteBase);
+    --bodyDepth: calc(1.5*var(--sateliteBase));
+
+    perspective: 30rem;
+
+    /* opacity: 0%; */
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    .Satelite3d {
+
+        animation: --rotate 15s infinite linear;
+
+        transform: rotateY(180deg);
+
+        transform-style: preserve-3d;
+
+        display: grid;
+
+        &>* {
+            grid-area: 1/1;
+            align-self: center;
+            justify-self: center;
+        }
+
+        & .body {
+
+            --Height: calc(2*var(--sateliteBase));
+            --Width: var(--sateliteBase);
+            --Depth: calc(1.5*var(--sateliteBase));
+
+            transform-style: preserve-3d;
+            display: grid;
+
+            & .panelFront,
+            .panelBack {
+                width: var(--Width);
+                height: var(--Height);
+            }
+
+            & .panelLeft,
+            .panelRight {
+                width: var(--Depth);
+                height: var(--Height);
+            }
+
+            & .panelTop,
+            .panelBottom {
+                width: var(--Width);
+                height: var(--Depth);
+
+            }
+
+            &>* {
+                display: block;
+                grid-area: 1/1;
+                align-self: center;
+                justify-self: center;
+                background: rgb(33, 33, 35);
+            }
+
+            & .panelFront {
+                transform: translateZ(calc(var(--Depth) /2));
+            }
+
+            & .panelBack {
+                transform: rotateY(180deg) translateZ(calc(var(--Depth) /2));
+            }
+
+            & .panelLeft {
+                transform: rotateY(90deg) translateZ(calc(var(--Width) / 2));
+            }
+
+            & .panelRight {
+                transform: rotateY(-90deg) translateZ(calc(var(--Width) / 2));
+            }
+
+            & .panelTop {
+                transform: rotateX(90deg) translateZ(calc(var(--Height)/2));
+            }
+
+            & .panelBottom {
+                transform: rotateX(-90deg) translateZ(calc(var(--Height)/2));
+            }
+        }
+
+        & .leftPanel,
+        .rightPanel {
+
+            --Height: calc(2*var(--sateliteBase));
+            --Width: var(--sateliteBase);
+            --Depth: calc(var(--sateliteBase)/10);
+
+            transform-style: preserve-3d;
+            display: grid;
+
+            & .panelFront,
+            .panelBack {
+                width: var(--Width);
+                height: var(--Height);
+            }
+
+            & .panelLeft,
+            .panelRight {
+                width: var(--Depth);
+                height: var(--Height);
+            }
+
+            & .panelTop,
+            .panelBottom {
+                width: var(--Width);
+                height: var(--Depth);
+            }
+
+            &>* {
+                display: block;
+                grid-area: 1/1;
+                align-self: center;
+                justify-self: center;
+                background: rgb(29, 26, 30);
+            }
+
+            & .panelFront {
+                transform: translateZ(calc(var(--Depth) /2));
+                background: #243133;
+                background: linear-gradient(45deg, rgba(36, 49, 51, 1) 0%, rgba(47, 70, 71, 1) 27%, rgba(72, 128, 130, 1) 50%, rgba(37, 58, 59, 1) 78%, rgba(35, 45, 46, 1) 100%);
+            }
+
+            & .panelBack {
+                transform: rotateY(180deg) translateZ(calc(var(--Depth) /2));
+            }
+
+            & .panelLeft {
+                transform: rotateY(90deg) translateZ(calc(var(--Width) / 2));
+            }
+
+            & .panelRight {
+                transform: rotateY(-90deg) translateZ(calc(var(--Width) / 2));
+            }
+
+            & .panelTop {
+                transform: rotateX(90deg) translateZ(calc(var(--Height)/2));
+            }
+
+            & .panelBottom {
+                transform: rotateX(-90deg) translateZ(calc(var(--Height)/2));
+            }
+        }
+
+        & .detailBox {
+
+            --Height: calc(var(--sateliteBase)/2);
+            --Width: calc(var(--sateliteBase)/2);
+            --Depth: calc(var(--sateliteBase)/3);
+
+            transform-style: preserve-3d;
+            display: grid;
+
+            & .panelFront,
+            .panelBack {
+                width: var(--Width);
+                height: var(--Height);
+            }
+
+            & .panelLeft,
+            .panelRight {
+                width: var(--Depth);
+                height: var(--Height);
+            }
+
+            & .panelTop,
+            .panelBottom {
+                width: var(--Width);
+                height: var(--Depth);
+
+            }
+
+            &>* {
+                display: block;
+                grid-area: 1/1;
+                align-self: center;
+                justify-self: center;
+                background: rgb(69, 62, 25);
+            }
+
+            & .panelFront {
+                transform: translateZ(calc(var(--Depth) /2));
+            }
+
+            & .panelBack {
+                transform: rotateY(180deg) translateZ(calc(var(--Depth) /2));
+            }
+
+            & .panelLeft {
+                transform: rotateY(90deg) translateZ(calc(var(--Width) / 2));
+            }
+
+            & .panelRight {
+                transform: rotateY(-90deg) translateZ(calc(var(--Width) / 2));
+            }
+
+            & .panelTop {
+                transform: rotateX(90deg) translateZ(calc(var(--Height)/2));
+            }
+
+            & .panelBottom {
+                transform: rotateX(-90deg) translateZ(calc(var(--Height)/2));
+            }
+        }
+
+        & .leftPanel {
+            transform: translateX(var(--bodyWidth)) translateZ(calc(var(--bodyDepth)/3));
+        }
+
+        & .rightPanel {
+            transform: translateX(calc(-1 * var(--bodyWidth))) translateZ(calc(var(--bodyDepth)/3));
+        }
+
+        & .detailBox {
+            transform: translateZ(calc(var(--bodyDepth)/2));
+
+        }
+    }
+}
+
+
+
+
 /* page */
 main {
-    /* position: relative; */
-    /* perspective: 20rem; */
     timeline-scope: --heroTrigger, --aboutTrigger, --sateliteTrigger;
 }
 
@@ -11,7 +259,7 @@ main {
 /* wrapper */
 #heroWrapper {
     /* Change this value for the "length of the hero scroll animation */
-    height: 150svh;
+    height: 200svh;
     view-timeline-name: --heroTrigger;
 
     /* transform-style: preserve-3d; */
@@ -78,10 +326,10 @@ main {
 
 
 /* satelite */
-.sateliteAnimation {
+.Satelite3dScene {
     /*! width aanpassen naar wat we nodig hebben */
-    width: var(--sateliteWidth);
-    height: var(--sateliteHeight);
+    /* width: var(--sateliteWidth);
+    height: var(--sateliteHeight); */
 
     transform-style: preserve-3d;
 
@@ -96,10 +344,18 @@ main {
 
 @keyframes rotateSatelite {
     0% {
-        transform: rotateY(0deg) translateZ(-18svw) ;
-    }  99% {
-        transform: rotateY(-180deg) translateZ(-18svw) ;
-    } 100% {
+        transform: rotateY(0deg) translateZ(-20svw);
+    }
+
+    75% {
+        transform: rotateY(-180deg) translateZ(-20svw);
+    }
+
+    99% {
+        transform: translateX(-35svw);
+    }
+
+    100% {
         display: none;
     }
 }
@@ -111,16 +367,20 @@ main {
     100% {
         transform: rotateY(0deg) translateZ(-18svw) ;
     }
-        
+       
 } */
 
 
 @keyframes zIndexSatelite {
     0% {
         z-index: 0;
-    } 50% {
+    }
+
+    50% {
         z-index: 0;
-    } 51% {
+    }
+
+    51% {
         z-index: 1;
     }
 }
