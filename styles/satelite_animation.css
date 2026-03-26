@@ -4,7 +4,7 @@
 
 .Satelite3dScene {
 
-    --sateliteBase: 100px;
+    --sateliteBase: 25px;
     --bodyHeight: calc(2*var(--sateliteBase));
     --bodyWidth: var(--sateliteBase);
     --bodyDepth: calc(1.5*var(--sateliteBase));
@@ -16,6 +16,8 @@
     left: 50%;
 
     .Satelite3d {
+
+        transform: rotateY(180deg);
 
         transform-style: preserve-3d;
 
@@ -114,7 +116,6 @@
             .panelBottom {
                 width: var(--Width);
                 height: var(--Depth);
-
             }
 
             &>* {
@@ -233,8 +234,6 @@
 
 /* page */
 main {
-    /* position: relative; */
-    /* perspective: 20rem; */
     timeline-scope: --heroTrigger, --aboutTrigger, --sateliteTrigger;
 }
 
