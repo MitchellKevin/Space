@@ -2,7 +2,7 @@
 /* MARK: Hover animation */
 
 
-/* .Satelite3dScene {
+.Satelite3dScene {
 
     --sateliteBase: 100px;
     --bodyHeight: calc(2*var(--sateliteBase));
@@ -227,7 +227,7 @@
         }
     }
 }
- */
+
 
 
 
@@ -311,10 +311,10 @@ main {
 
 
 /* satelite */
-.sateliteAnimation {
+.Satelite3dScene {
     /*! width aanpassen naar wat we nodig hebben */
-    width: var(--sateliteWidth);
-    height: var(--sateliteHeight);
+    /* width: var(--sateliteWidth);
+    height: var(--sateliteHeight); */
 
     transform-style: preserve-3d;
 
