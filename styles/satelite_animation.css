@@ -2,7 +2,7 @@
 /* MARK: Hover animation */
 
 
-.Satelite3dScene {
+/* .Satelite3dScene {
 
     --sateliteBase: 100px;
     --bodyHeight: calc(2*var(--sateliteBase));
@@ -227,7 +227,7 @@
         }
     }
 }
-
+ */
 
 
 
@@ -279,7 +279,6 @@ main {
 
 /* wrapper */
 .sateliteWrapper {
-    display: none;
     perspective: 20rem;
 
     position: fixed;
@@ -330,14 +329,10 @@ main {
 
 @keyframes rotateSatelite {
     0% {
-        transform: rotateY(0deg) translateZ(-18svw);
-    }
-
-    99% {
-        transform: rotateY(-180deg) translateZ(-18svw);
-    }
-
-    100% {
+        transform: rotateY(0deg) translateZ(-18svw) ;
+    }  99% {
+        transform: rotateY(-180deg) translateZ(-18svw) ;
+    } 100% {
         display: none;
     }
 }
@@ -349,20 +344,16 @@ main {
     100% {
         transform: rotateY(0deg) translateZ(-18svw) ;
     }
-
+        
 } */
 
 
 @keyframes zIndexSatelite {
     0% {
         z-index: 0;
-    }
-
-    50% {
+    } 50% {
         z-index: 0;
-    }
-
-    51% {
+    } 51% {
         z-index: 1;
     }
 }
