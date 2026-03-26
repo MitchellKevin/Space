@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="styles/root.css">
   <link rel="stylesheet" href="styles/style.css">
   <link rel="stylesheet" href="styles/hero.css">
+  <link rel="stylesheet" href="styles/satelite3D.css"> 
   <!-- <link rel="stylesheet" href="styles/satelite_animation.css"> -->
   <link rel="stylesheet" href="styles/stars.css"> 
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet">
@@ -131,7 +132,35 @@
       <h2 class="section-title">Satelite info</h2>
       <img src="/assets/images/satelite_basic.png" alt="the nebula explorer satelite"/>
 
-    </section>
+<details class="sat-detail" id="detail-xray" name="info_component">
+  <summary><span class="sat-dot"></span>X-ray Instrument</summary>
+  ...
+</details>
+
+<details class="sat-detail" id="detail-solar" name="info_component">
+  <summary><span class="sat-dot"></span>Solar Arrays (PWR)</summary>
+  ...
+</details>
+
+<details class="sat-detail" id="detail-prop" name="info_component">
+  <summary><span class="sat-dot"></span>Propulsion — Dawn SD5</summary>
+  ...
+</details>
+
+<details class="sat-detail" id="detail-comm" name="info_component">
+  <summary><span class="sat-dot"></span>Communications</summary>
+  ...
+</details>
+
+<details class="sat-detail" id="detail-aocs" name="info_component">
+  <summary><span class="sat-dot"></span>AOCS</summary>
+  ...
+</details>
+
+</div>
+  </div>
+
+</section>
 
 <div class="star-wrapper">
     <div class="star"></div>
@@ -236,16 +265,230 @@
     <div class="star"></div>
 </div>
 
+<!-- SUBSYSTEMS -->
+<section id="subsystems">
+  <div class="section">
+    <div class="tag reveal">Engineering</div>
+    <h2 class="section-title reveal">Spacecraft <strong>subsystems</strong></h2>
+    <div class="sub-grid">
+
+      <div class="sub-card reveal">
+        <div class="sub-num">AOCS</div>
+        <div class="sub-title">Attitude & Orbit Control</div>
+        <div class="sub-body">4× Rocket Lab RW3-0.06 reaction wheels in tetrahedral configuration. Star trackers provide 7 arcsec pointing accuracy. 3× magnetic torquers for desaturation.</div>
+        <div class="sub-specs">
+          <div class="sub-spec"><span>APE</span><strong>≤ 240 arcsec</strong></div>
+          <div class="sub-spec"><span>Slew</span><strong>180° / 150 s</strong></div>
+        </div>
+      </div>
+
+      <div class="sub-card reveal" style="transition-delay:.08s">
+        <div class="sub-num">PROP</div>
+        <div class="sub-title">Propulsion</div>
+        <div class="sub-body">Dawn Aerospace Satdrive SD5 — bipropellant N₂O / propylene system. Self-pressurising, no pumps required. Switchable to cold-gas mode.</div>
+        <div class="sub-specs">
+          <div class="sub-spec"><span>Total ΔV</span><strong>26.97 m/s</strong></div>
+          <div class="sub-spec"><span>Isp</span><strong>250–280 s</strong></div>
+        </div>
+      </div>
+
+      <div class="sub-card reveal" style="transition-delay:.16s">
+        <div class="sub-num">PWR</div>
+        <div class="sub-title">Power</div>
+        <div class="sub-body">SparkWing solar arrays with SADM at 50 V bus. 296 Whr battery capacity (Enersys ABSL P20). Designed to 5-year EOL degradation at 45° MIO.</div>
+        <div class="sub-specs">
+          <div class="sub-spec"><span>Peak draw</span><strong>89 W</strong></div>
+          <div class="sub-spec"><span>Array area</span><strong>0.76 m²</strong></div>
+        </div>
+      </div>
+
+      <div class="sub-card reveal" style="transition-delay:.24s">
+        <div class="sub-num">COMM</div>
+        <div class="sub-title">Communications</div>
+        <div class="sub-body">Dual Satlab SRS-4 S-band transceivers in hot redundancy. iQspacecom quad-patch high-gain TX antenna (11.5 dB). KSAT ground station network.</div>
+        <div class="sub-specs">
+          <div class="sub-spec"><span>Downlink</span><strong>8 Mbps</strong></div>
+          <div class="sub-spec"><span>Storage</span><strong>32 GB</strong></div>
+        </div>
+      </div>
+
+      <div class="sub-card reveal" style="transition-delay:.32s">
+        <div class="sub-num">THM</div>
+        <div class="sub-title">Thermal Control</div>
+        <div class="sub-body">Full-spacecraft MLI (3.05 m²) with ITO-coated Aluminized Polyimide outer layer. Dedicated radiators for bus (+Y face) and instrument (−X face).</div>
+        <div class="sub-specs">
+          <div class="sub-spec"><span>Op. range</span><strong>−35 to +80°C</strong></div>
+          <div class="sub-spec"><span>Radiator</span><strong>0.24 m² total</strong></div>
+        </div>
+      </div>
+
+      <div class="sub-card reveal" style="transition-delay:.40s">
+        <div class="sub-num">C&DH</div>
+        <div class="sub-title">Command & Data Handling</div>
+        <div class="sub-body">AAC Clyde Sirius OBC with triple-redundant FPGA. SEE-tolerant storage. Handles science data burst from 20-Crab sources over multi-week windows.</div>
+        <div class="sub-specs">
+          <div class="sub-spec"><span>Storage</span><strong>32 GB EDAC</strong></div>
+          <div class="sub-spec"><span>Target</span><strong>60 GB preferred</strong></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERTS -->
+<section id="experts">
+  <div class="section">
+    <div class="tag reveal">Our experts</div>
+    <h2 class="section-title reveal">Led by <strong>scientists</strong><br>& engineers</h2>
+    <div class="experts-grid">
+      <div class="expert-card reveal">
+        <div class="expert-initials">MG</div>
+        <div class="expert-info">
+          <div class="expert-name">Martin Grim</div>
+          <div class="expert-role">Section Head · Electronics Engineering</div>
+          <div class="expert-bio">Authorized designer of the NEBULA-Xplorer DDD. Leads the electronics engineering section at SRON, overseeing instrument readout systems and spacecraft avionics.</div>
+        </div>
+      </div>
+      <div class="expert-card reveal" style="transition-delay:.1s">
+        <div class="expert-initials">NG</div>
+        <div class="expert-info">
+          <div class="expert-name">Nathalie Gorter</div>
+          <div class="expert-role">PA/QA · Product Assurance</div>
+          <div class="expert-bio">Responsible for product assurance on the NEBULA-Xplorer mission. Ensures compliance with ECSS standards across all design phases from SRR through CDR.</div>
+        </div>
+      </div>
+      <div class="expert-card reveal" style="transition-delay:.2s">
+        <div class="expert-initials">BR</div>
+        <div class="expert-info">
+          <div class="expert-name">Benjamin Ricketts</div>
+          <div class="expert-role">PhD Candidate · SRON Leiden</div>
+          <div class="expert-bio">Researcher contributing to the scientific case for NEBULA-Xplorer, focusing on X-ray binary systems and quasi-periodic emission behaviour in the high-energy regime.</div>
+        </div>
+      </div>
+      <div class="expert-card reveal" style="transition-delay:.3s">
+        <div class="expert-initials">NX</div>
+        <div class="expert-info">
+          <div class="expert-name">NEBULA-Xplorer Team</div>
+          <div class="expert-role">~400 students · 14 institutions</div>
+          <div class="expert-bio">The mission is designed, built, and tested by students from Dutch MBO, HBO, and WO institutions — guided by SRON scientists and Dutch industry partners.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS CAROUSEL -->
+<section id="partners">
+  <div class="section partners-section reveal">
+    <div class="tag">Mission partners</div>
+    <h2 class="section-title">Built with <strong>14 institutions</strong></h2>
+  </div>
+  <div class="partners-track-wrap">
+    <div class="partners-track">
+      <div class="partner-logo">ESATAN</div>
+      <div class="partner-logo">Astos Solutions</div>
+      <div class="partner-logo">Univ. Leiden</div>
+      <div class="partner-logo">Erasmus Univ.</div>
+      <div class="partner-logo">TU Delft</div>
+      <div class="partner-logo">Techniek College Rotterdam</div>
+      <div class="partner-logo">ROC Nova</div>
+      <div class="partner-logo">ROC Mondriaan</div>
+      <div class="partner-logo">MBO Rijnland</div>
+      <div class="partner-logo">Leiden in Science</div>
+      <div class="partner-logo">Saxion UAS</div>
+      <div class="partner-logo">HvA</div>
+      <div class="partner-logo">Hogeschool Utrecht</div>
+      <div class="partner-logo">De Haagse</div>
+      <div class="partner-logo">Inholland</div>
+      <div class="partner-logo">Univ. Amsterdam</div>
+      <div class="partner-logo">Univ. Groningen</div>
+      <!-- duplicate for seamless loop -->
+      <div class="partner-logo">ESATAN</div>
+      <div class="partner-logo">Astos Solutions</div>
+      <div class="partner-logo">Univ. Leiden</div>
+      <div class="partner-logo">Erasmus Univ.</div>
+      <div class="partner-logo">TU Delft</div>
+      <div class="partner-logo">Techniek College Rotterdam</div>
+      <div class="partner-logo">ROC Nova</div>
+      <div class="partner-logo">ROC Mondriaan</div>
+      <div class="partner-logo">MBO Rijnland</div>
+      <div class="partner-logo">Leiden in Science</div>
+      <div class="partner-logo">Saxion UAS</div>
+      <div class="partner-logo">HvA</div>
+      <div class="partner-logo">Hogeschool Utrecht</div>
+      <div class="partner-logo">De Haagse</div>
+      <div class="partner-logo">Inholland</div>
+      <div class="partner-logo">Univ. Amsterdam</div>
+      <div class="partner-logo">Univ. Groningen</div>
+    </div>
+  </div>
+</section>
 
   </main>
 
-  <footer>
-    <p class="fc">© 2025 SRON Netherlands Institute for Space Research · Doc SRON-NEBULA-SP-2025-024</p>
-  </footer>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="nav-logo" href="#">NEBULA<span><em>-Xplorer</em></span></a>
+        <p class="footer-tagline">What happens up there,<br>starts down here.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <div class="footer-col-label">Mission</div>
+          <ul>
+            <li><a href="#">Overview</a></li>
+            <li><a href="#">Science</a></li>
+            <li><a href="#">Instrumentation</a></li>
+            <li><a href="#">Partners</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-label">SRON</div>
+          <ul>
+            <li><a href="https://www.sron.nl/en/" target="_blank">sron.nl</a></li>
+            <li><a href="https://www.sron.nl/en/missions/" target="_blank">All Missions</a></li>
+            <li><a href="https://werkenbijsron.nl/en/internship-and-graduation/" target="_blank">Internships</a></li>
+            <li><a href="https://www.sron.nl/en/newsletter/" target="_blank">Newsletter</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-label">Locations</div>
+          <address>
+            <span>Leiden</span><br>
+            Niels Bohrweg 4<br>
+            2333 CA Leiden<br><br>
+            <span>Groningen</span><br>
+            Landleven 12<br>
+            9747 AD Groningen
+          </address>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="fc">© 2025 SRON Netherlands Institute for Space Research · Doc SRON-NEBULA-SP-2025-024</p>
+      <ul class="flinks">
+        <li><a href="https://www.nwo-i.nl/en/privacy-policy/" target="_blank">Privacy Policy</a></li>
+        <li><a href="https://www.sron.nl/en/contact/" target="_blank">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
 
   <!-- Three.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-  <script src="scripts/hero.js" defer></script>
+  <!-- Three.js core — EERST -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<!-- OrbitControls — globaal, voor BEIDE scripts -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+<!-- GLTFLoader — globaal -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+
+<!-- Jouw scripts — GEEN type="module" meer op satelite3D -->
+<script src="scripts/hero.js" defer></script>
+<script src="scripts/satelite.js" defer></script>
 </body>
 </html>
