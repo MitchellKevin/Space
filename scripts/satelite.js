@@ -114,8 +114,8 @@ const hotspots = [
   { id: 'xray',    label: 'X-ray Instrument',  pos: new THREE.Vector3(0,  0.8,  -.2) },
   { id: 'solar',   label: 'Solar Arrays',       pos: new THREE.Vector3(1, 0,   .5)   },
   { id: 'prop',    label: 'Propulsion',         pos: new THREE.Vector3(0, -0.8,  0)   },
-  { id: 'comm',    label: 'Communications',     pos: new THREE.Vector3(0,  0.3, -0.8) },
-  { id: 'aocs',    label: 'AOCS',               pos: new THREE.Vector3(-0.6, 0.4, 0)  },
+  { id: 'comm',    label: 'Communications',     pos: new THREE.Vector3(0,  0.3, -0.6) },
+  { id: 'aocs',    label: 'AOCS',               pos: new THREE.Vector3(-.1, 0.8, .6)  },
 ];
 
 // Maak HTML knoppen aan

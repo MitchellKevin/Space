@@ -19,7 +19,7 @@ const targetZ = 3;
   const cur=document.getElementById('cur'),curR=document.getElementById('curR');
   let mx=0,my=0,rx=0,ry=0;
   document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
-  (function mc(){requestAnimationFrame(mc);rx+=(mx-rx)*.4;ry+=(my-ry)*.4;cur.style.left=mx+'px';cur.style.top=my+'px';curR.style.left=rx+'px';curR.style.top=ry+'px';})();
+  (function mc(){requestAnimationFrame(mc);rx+=(mx-rx)*.6;ry+=(my-ry)*.6;cur.style.left=mx+'px';cur.style.top=my+'px';curR.style.left=rx+'px';curR.style.top=ry+'px';})();
 
 const mouse = { x: 0, y: 0 };
 
