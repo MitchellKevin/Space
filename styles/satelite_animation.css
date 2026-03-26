@@ -1,0 +1,126 @@
+/* page */
+main {
+    /* position: relative; */
+    /* perspective: 20rem; */
+    timeline-scope: --heroTrigger, --aboutTrigger, --sateliteTrigger;
+}
+
+
+/* hero + wrapper */
+
+/* wrapper */
+#heroWrapper {
+    /* Change this value for the "length of the hero scroll animation */
+    height: 150svh;
+    view-timeline-name: --heroTrigger;
+
+    /* transform-style: preserve-3d; */
+}
+
+/* hero */
+#hero {
+    position: sticky;
+    height: 100svh;
+    top: 0;
+
+    /* transform-style: preserve-3d; */
+}
+
+/* .hero-content {
+    transform-style: preserve-3d;
+} */
+
+
+/* section about */
+#about {
+    view-timeline-name: --aboutTrigger;
+}
+
+/* section satelite info */
+#satelite {
+    view-timeline-name: --sateliteTrigger;
+}
+
+
+/* satelite to be animated */
+
+/* wrapper */
+.sateliteWrapper {
+    perspective: 20rem;
+
+    position: fixed;
+    height: 100%;
+    width: 100svw;
+
+    transform-style: preserve-3d;
+    z-index: 1;
+
+    animation-name: zIndexSatelite;
+    animation-timeline: --heroTrigger;
+    animation-range: exit-crossing 0% entry-crossing 100%;
+    animation-fill-mode: both;
+
+    --sateliteWidth: 100px;
+    --sateliteHeight: 150px;
+}
+
+.stickyContainer {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transform-style: preserve-3d;
+}
+
+
+
+/* satelite */
+.sateliteAnimation {
+    /*! width aanpassen naar wat we nodig hebben */
+    width: var(--sateliteWidth);
+    height: var(--sateliteHeight);
+
+    transform-style: preserve-3d;
+
+    animation-name: rotateSatelite;
+    animation-timeline: --heroTrigger;
+    animation-range: exit-crossing 0% entry-crossing 100%;
+    animation-fill-mode: both;
+
+}
+
+/* keyframes */
+
+@keyframes rotateSatelite {
+    0% {
+        transform: rotateY(0deg) translateZ(-18svw) ;
+    }  99% {
+        transform: rotateY(-180deg) translateZ(-18svw) ;
+    } 100% {
+        display: none;
+    }
+}
+
+/* @keyframes animationAbout {
+    0% {
+        transform: rotateY(-180deg) translateZ(-18svw) ;
+    }
+    100% {
+        transform: rotateY(0deg) translateZ(-18svw) ;
+    }
+        
+} */
+
+
+@keyframes zIndexSatelite {
+    0% {
+        z-index: 0;
+    } 50% {
+        z-index: 0;
+    } 51% {
+        z-index: 1;
+    }
+}

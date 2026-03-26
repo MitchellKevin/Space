@@ -1,0 +1,230 @@
+:root {
+
+    /* ========== COLORS - primitive ========== */
+
+    /* grays */
+    --gray-50: #f8f9fa;
+    --gray-100: #e7ebef;
+    --gray-200: #e9ecef;
+    --gray-300: #dee2e6;
+    --gray-400: #ced4da;
+    --gray-500: #adb5bd;
+    --gray-600: #6c757d;
+    --gray-700: #495057;
+    --gray-800: #343a40;
+    --gray-900: #212529;
+    --gray-950: #111417;
+
+    /* blue */
+    --blue-50: #ecedf8;
+    --blue-100: #d7d8f0;
+    --blue-200: #b0b3e1;
+    --blue-300: #898ed2;
+    --blue-400: #636ac1;
+    --blue-500: #414aa0;
+    --blue-600: #292f6b;
+    --blue-700: #202557;
+    --blue-800: #161a40;
+    --blue-900: #0d102e;
+    --blue-950: #07091f;
+
+    /* orange */
+    --orange-50: #fdf1ef;
+    --orange-100: #fce3e0;
+    --orange-200: #f9c2bb;
+    --orange-300: #f7a397;
+    --orange-400: #f57e67;
+    --orange-500: #eb5d34;
+    --orange-600: #ba4827;
+    --orange-700: #8f351c;
+    --orange-800: #622210;
+    --orange-900: #3c1206;
+    --orange-950: #280903;
+
+    /* yellow */
+    --color-yellow-50: #fff8f0;
+    --yellow-100: #fff2e1;
+    --yellow-200: #ffe8c9;
+    --yellow-300: #ffdaa3;
+    --yellow-400: #ffcd71;
+    --yellow-500: #ffc107;
+    --yellow-600: #c79600;
+    --yellow-700: #946f00;
+    --yellow-800: #644a00;
+    --yellow-900: #352500;
+    --yellow-950: #211600;
+
+    /* green */
+    --green-50: #c3fed9;
+    --green-100: #64fead;
+    --green-200: #31e18f;
+    --green-300: #29c37b;
+    --green-400: #21a568;
+    --green-500: #198754;
+    --green-600: #126c42;
+    --green-700: #0b5131;
+    --green-800: #053820;
+    --green-900: #022111;
+    --green-950: #011509;
+
+    /* red */
+    --red-50: #fcedee;
+    --red-100: #f9dbdd;
+    --red-200: #f5b7b9;
+    --red-300: #f19095;
+    --red-400: #ee636c;
+    --red-500: #dc3545;
+    --red-600: #b22936;
+    --red-700: #881d27;
+    --red-800: #601219;
+    --red-900: #3b070c;
+    --red-950: #290406;
+
+    /* cyan */
+    --cyan-50: #f2fbff;
+    --cyan-100: #ddf5ff;
+    --cyan-200: #b6ebff;
+    --cyan-300: #86e1ff;
+    --cyan-400: #30d8ff;
+    --cyan-500: #0dcaf0;
+    --cyan-600: #089ebc;
+    --cyan-700: #04758c;
+    --cyan-800: #024e5e;
+    --cyan-900: #012a34;
+    --cyan-950: #001b22;
+
+    /* other */
+    --blue: #292F6B;
+    --indigo: #6610f2;
+    --purple: #6f42c1;
+    --pink: #d63384;
+    --red: #dc3545;
+    --orange: #EB5D34;
+    --yellow: #ffc107;
+    --green: #198754;
+    --teal: #20c997;
+    --cyan: #0dcaf0;
+
+
+    /* ========== COLORS - Semantic ========== */
+
+    --color-primary: var(--blue-600);
+    --color-secondary: var(--orange-500);
+
+    --color-bg: var(--gray-900);
+    --color-bg-alt: var(--blue-900);
+
+    --color-text: var(--gray-100);
+    --color-text-highlight: var(--color-secondary);
+
+    --color-light: var(--gray-100);
+    --color-dark: var(--blue-950);
+
+    --color-info: var(--cyan-500);
+    --color-info-emphasis: var(--cyan-800);
+    --color-error: var(--red-500);
+    --color-warning: var(--yellow-500);
+    --color-success: var(--green-500);
+
+
+    /* ========== TYPOGRAPHY ========== */
+
+    /* Hieronder een voorbeeld */
+    --font-sans: system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+    --font-mono: "Courier New",
+        monospace;
+
+    /* Hieronder heb ik van de website maar idk of we die fonts gaan gebruiken */
+    /*        --bs-font-sans-serif: "Space Mono",
+           "Roboto",
+           "Verdana",
+           "Source Sans",
+           "Helvetica Neue",
+           Helvetica,
+           "Arial Black",
+           Arial,
+           sans-serif;
+       --bs-font-monospace: SFMono-Regular,
+           Menlo,
+           Monaco,
+           Consolas,
+           "Liberation Mono",
+           "Courier New",
+           monospace; */
+
+    --font-line-height: 1.5;
+    --font-letter-spacing: 1;
+
+    --font-size-xs: 0.75rem;
+    --font-size-s: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-l: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-xxl: 1.5rem;
+
+    --font-heading-size-s: clamp(1rem, 0.85rem + 0.6vw, 1.3rem);
+    --font-heading-size-m: clamp(1.4rem, 1.1rem + 1vw, 2rem);
+    --font-heading-size-l: clamp(1.8rem, 1.2rem + 1.8vw, 3rem);
+    --font-heading-size-xl: clamp(2.4rem, 1.5rem + 3vw, 4.5rem);
+
+
+    /* ========== SPACING ========== */
+
+    --spacing-inset-xs: 0.25rem;
+    --spacing-inset-s: 0.5rem;
+    --spacing-inset-m: 1rem;
+    --spacing-inset-l: 1.5rem;
+    --spacing-inset-xl: 2rem;
+
+
+    /* ========== BORDER ========== */
+
+    /* radius */
+    --border-radius-s: 4px;
+    --border-radius-m: 8px;
+    --border-radius-l: 16px;
+
+    /* width */
+    --border-width-s: 1px;
+    --border-width-m: 2px;
+    --border-width-l: 4px;
+
+
+    /* ========== SHADOWS ========== */
+
+    --shadow: 0 0 0 2px rgb(129 150 158 / 20%);
+
+    
+    /* ========== LAYOUT ========== */
+
+    /* breakpoints */
+    /* overgenomen van site */
+    --layout-breakpoint-xs: 0;
+    --layout-breakpoint-m: 576px;
+    --layout-breakpoint-m: 768px;
+    --layout-breakpoint-l: 992px;
+    --layout-breakpoint-xl: 1200px;
+    --layout-breakpoint-xxl: 1400px;
+    
+    /* ========== Gradients ========== */
+
+    /* idk of we dit gaan gebruiken maar kwam uit de site  dus maybe handig */
+    --gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg, rgb(6, 147, 227) 0%, rgb(155, 81, 224) 100%);
+    --gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg, rgb(122, 220, 180) 0%, rgb(0, 208, 130) 100%);
+    --gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg, rgb(252, 185, 0) 0%, rgb(255, 105, 0) 100%);
+    --gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg, rgb(255, 105, 0) 0%, rgb(207, 46, 46) 100%);
+    --gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg, rgb(238, 238, 238) 0%, rgb(169, 184, 195) 100%);
+    --gradient--cool-to-warm-spectrum: linear-gradient(135deg, rgb(74, 234, 220) 0%, rgb(151, 120, 209) 20%, rgb(207, 42, 186) 40%, rgb(238, 44, 130) 60%, rgb(251, 105, 98) 80%, rgb(254, 248, 76) 100%);
+    --gradient--blush-light-purple: linear-gradient(135deg, rgb(255, 206, 236) 0%, rgb(152, 150, 240) 100%);
+    --gradient--blush-bordeaux: linear-gradient(135deg, rgb(254, 205, 165) 0%, rgb(254, 45, 45) 50%, rgb(107, 0, 62) 100%);
+    --gradient--luminous-dusk: linear-gradient(135deg, rgb(255, 203, 112) 0%, rgb(199, 81, 192) 50%, rgb(65, 88, 208) 100%);
+    --gradient--pale-ocean: linear-gradient(135deg, rgb(255, 245, 203) 0%, rgb(182, 227, 212) 50%, rgb(51, 167, 181) 100%);
+    --gradient--electric-grass: linear-gradient(135deg, rgb(202, 248, 128) 0%, rgb(113, 206, 126) 100%);
+    --gradient--midnight: linear-gradient(135deg, rgb(2, 3, 129) 0%, rgb(40, 116, 252) 100%);
+    
+
+}
