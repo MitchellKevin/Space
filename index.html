@@ -129,14 +129,44 @@
   <div id="sat-viewer">
     <canvas id="sat-canvas"></canvas>
     <div class="sat-ui">
-      <div class="sat-hint">drag to rotate · scroll to zoom</div>
+      <div class="sat-hint">drag to rotate</div>
       <div class="sat-labels" id="sat-labels"></div>
     </div>
     <div class="sat-loading" id="sat-loading">
       <div class="sat-loading-bar"><div class="sat-loading-fill" id="sat-fill"></div></div>
       <div class="sat-loading-text" id="sat-loading-text">Loading model — 0%</div>
     </div>
+      <!-- SATELLITE COMPONENT OVERLAY -->
+<div class="sat-details-overlay">
+
+<details class="sat-detail" id="detail-xray" name="info_component">
+  <summary><span class="sat-dot"></span>X-ray Instrument</summary>
+  ...
+</details>
+
+<details class="sat-detail" id="detail-solar" name="info_component">
+  <summary><span class="sat-dot"></span>Solar Arrays (PWR)</summary>
+  ...
+</details>
+
+<details class="sat-detail" id="detail-prop" name="info_component">
+  <summary><span class="sat-dot"></span>Propulsion — Dawn SD5</summary>
+  ...
+</details>
+
+<details class="sat-detail" id="detail-comm" name="info_component">
+  <summary><span class="sat-dot"></span>Communications</summary>
+  ...
+</details>
+
+<details class="sat-detail" id="detail-aocs" name="info_component">
+  <summary><span class="sat-dot"></span>AOCS</summary>
+  ...
+</details>
+
+</div>
   </div>
+
 </section>
 
 <div class="star-wrapper">

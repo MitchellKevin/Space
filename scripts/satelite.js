@@ -31,7 +31,7 @@ fetch('./models/sateliet/satelite_v8.glb')
     0.01,
     1000
   );
-  camera.position.set(3, 1.5, 3);
+  camera.position.set(-2, 1.5, 3);
 
   // ── Lights ─────────────────────────────────────────────────────────────────
   const sunLight = new THREE.DirectionalLight(0xffe8c0, 2.5);
@@ -53,10 +53,9 @@ fetch('./models/sateliet/satelite_v8.glb')
   const controls = new THREE.OrbitControls(camera, renderer.domElement);
   controls.enableDamping   = true;
   controls.dampingFactor   = 0.06;
-  controls.autoRotate      = true;
-  controls.autoRotateSpeed = 0.6;
-  controls.minDistance     = 1;
-  controls.maxDistance     = 20;
+  controls.enableZoom = false;
+  controls.minDistance     = 4;
+  controls.maxDistance     = 4;
   controls.enablePan       = false;
 
   // ── GLB laden ──────────────────────────────────────────────────────────────
@@ -75,7 +74,7 @@ fetch('./models/sateliet/satelite_v8.glb')
       const size   = box.getSize(new THREE.Vector3());
       const center = box.getCenter(new THREE.Vector3());
       const maxDim = Math.max(size.x, size.y, size.z);
-      const scale  = 2.5 / maxDim;
+      const scale  = 2.6 / maxDim;
 
       model.scale.setScalar(scale);
       model.position.sub(center.multiplyScalar(scale));
@@ -112,12 +111,51 @@ fetch('./models/sateliet/satelite_v8.glb')
     renderer.setSize(viewer.clientWidth, viewer.clientHeight);
   });
 
-  // ── Render loop ────────────────────────────────────────────────────────────
-  function animate() {
-    requestAnimationFrame(animate);
-    controls.update();
-    renderer.render(scene, camera);
-  }
-  animate();
+// Definieer ankerpunten op het model (pas x,y,z aan op jouw model)
+const hotspots = [
+  { id: 'xray',    label: 'X-ray Instrument',  pos: new THREE.Vector3(0,  0.8,  -.2) },
+  { id: 'solar',   label: 'Solar Arrays',       pos: new THREE.Vector3(1, 0,   .5)   },
+  { id: 'prop',    label: 'Propulsion',         pos: new THREE.Vector3(0, -0.8,  0)   },
+  { id: 'comm',    label: 'Communications',     pos: new THREE.Vector3(0,  0.3, -0.8) },
+  { id: 'aocs',    label: 'AOCS',               pos: new THREE.Vector3(-0.6, 0.4, 0)  },
+];
+
+// Maak HTML knoppen aan
+const overlay = document.createElement('div');
+overlay.style.cssText = 'position:absolute;inset:0;pointer-events:none;';
+viewer.appendChild(overlay);
+
+hotspots.forEach(h => {
+  const btn = document.createElement('div');
+  btn.id = 'hs-' + h.id;
+  btn.innerHTML = `<button>+</button><div class="hs-label">${h.label}</div>`;
+  btn.style.cssText = 'position:absolute;pointer-events:auto;transform:translate(-50%,-50%);';
+  btn.querySelector('button').addEventListener('click', () => {
+    document.getElementById('detail-' + h.id)?.toggleAttribute('open');
+  });
+  overlay.appendChild(btn);
+});
+
+function animate() {
+  requestAnimationFrame(animate);
+  controls.update();
+  renderer.render(scene, camera);
+
+  // Project elke hotspot naar schermcoördinaten
+  hotspots.forEach(h => {
+    const btn = document.getElementById('hs-' + h.id);
+    if (!btn) return;
+
+    const vec = h.pos.clone().project(camera);
+    const x = (vec.x *  0.5 + 0.5) * viewer.clientWidth;
+    const y = (vec.y * -0.5 + 0.5) * viewer.clientHeight;
+
+    // Verberg als achter het model (z > 1)
+    btn.style.display = vec.z > 1 ? 'none' : 'block';
+    btn.style.left = x + 'px';
+    btn.style.top  = y + 'px';
+  });
+}
+animate();
 
 })();
