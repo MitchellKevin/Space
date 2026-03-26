@@ -101,7 +101,7 @@
     }
     .di { display:flex; align-items:center; gap:9px; white-space:nowrap; }
     .dl { font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); }
-    .dv { font-size:11px; letter-spacing:.08em; color:var(--accent); }
+    .dv { font-size:11px; letter-spacing:.08em; color:#ffffffab; }
     .dot { width:5px; height:5px; border-radius:50%; background:#44ffaa; box-shadow:0 0 6px #44ffaa; animation:blink 2s ease-in-out infinite; }
     .dsep { width:1px; height:18px; background:var(--border); }
     @keyframes blink { 0%,100%{opacity:1}50%{opacity:.3} }
@@ -128,17 +128,18 @@
     @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
     /* SECTION WRAPPER */
-    .section { max-width:1360px; margin:0 auto; padding:30px 30px; }
+    .section { max-width:100vw;  padding:60px   120px;  justify-self: center;}
 
     /* ABOUT */
-    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; background-color: black; }
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; 
+background: linear-gradient(180deg, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%); }
     .tag { font-size:9px; letter-spacing:.3em; text-transform:uppercase; color:var(--accent); margin-bottom:22px; display:flex; align-items:center; gap:12px; }
     .tag::before { content:''; display:block; width:28px; height:1px; background:var(--accent); }
-    .section-title { font-family:'Cormorant Garamond',serif; font-size:clamp(36px,4.5vw,62px); font-weight:300; line-height:1.08; color:var(--white); }
-    .section-title strong { font-weight:600; font-style:italic; color:var(--accent); }
+    .section-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(36px,4.5vw,62px); font-weight:300; line-height:1.08; color:var(--white); }
+    .section-title strong { font-family:'Cormorant Garamond', serif ; font-weight:600; font-style:italic; color:var(--accent); }
     .body-text { font-size:11px; line-height:2.2; color:var(--muted); margin-top:28px; }
     .feature-list { display:flex; flex-direction:column; gap:0; }
-    .feature-item { padding:24px 0; border-bottom:1px solid var(--border); display:grid; grid-template-columns:36px 1fr; gap:18px; align-items:start; }
+    .feature-item { padding:24px 0; border-bottom:1px so  lid var(--border); display:grid; grid-template-columns:36px 1fr; gap:18px; align-items:start; &:last-child{ border: none} }
     .fn { font-family:'Bebas Neue',sans-serif; font-size:12px; letter-spacing:.15em; color:var(--accent); padding-top:2px; }
     .ft { font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--white); margin-bottom:6px; }
     .fd { font-size:11px; line-height:1.9; color:var(--muted); }
@@ -240,7 +241,7 @@ footer {
 
 /* SUBSYSTEMS */
 #subsystems { background: var(--deep); border-top: 1px solid var(--border); }
-.sub-grid { margin-top: 56px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
+.sub-grid { margin: 56px -30px 0 -30px;  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
 .sub-card {
   background: var(--deep);
   padding: 36px 32px;
@@ -263,7 +264,7 @@ footer {
 
 /* EXPERTS */
 #experts { background: var(--bg); border-top: 1px solid var(--border); }
-.experts-grid { margin-top: 56px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); }
+.experts-grid { margin: 56px -30px 0px -30px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); }
 .expert-card {
   background: var(--bg);
   padding: 40px 36px;
@@ -293,15 +294,15 @@ footer {
 }
 
 /* SATELLITE VIEWER */
-#satelite { background: var(--bg); border-top: 1px solid var(--border); }
-#satelite .section { padding-bottom: 40px;}
+#satelite { background: none; height: 90vh;}
+#satelite .section { padding-bottom: 100px; }
 
 #sat-viewer {
   position: relative;
   width: 100%;
   height: 100vh;
   background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(126,207,255,0.04) 0%, transparent 70%);
-  border-top: 1px solid var(--border);
+  /* border-top: 1px solid var(--border); */
   border-bottom: 1px solid var(--border);
   overflow: hidden;
 }
@@ -309,6 +310,7 @@ footer {
 #sat-canvas {
   width: 100% !important;
   height: 100% !important;
+  padding: 0px 0px;
   display: block;
 }
 
