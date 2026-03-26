@@ -3,17 +3,17 @@
   inherits: true;
   initial-value: 10;
 }
- 
+
 @property --rot {
   syntax: "<number>";
   inherits: true;
   initial-value: 8;
 }
- 
+
 body {
   margin: 0em;
 }
- 
+
 #blackHole {
   --radius: 7vmin;
   --radiusFactor: 10;
@@ -21,15 +21,15 @@ body {
   --varDur: 8s;
   --slowDur: 2000s;
   --rot: 4;
- 
+
   display: grid;
   place-items: center;
- 
+
   height: 100vh;
   background: linear-gradient(black, rgb(0, 0, 20));
 }
- 
-#blackHole #black {
+
+#black {
   width: calc(var(--radius) * 2);
   aspect-ratio: 1/1;
   transform: scale(1, 0.3);
@@ -39,39 +39,39 @@ body {
   display: grid;
   place-items: center;
   box-shadow: 0px 0px 3000px calc(var(--radius) * 3) rgba(15, 0, 226, 0.311);
- 
+
   transition: --radiusFactor 5s ease-in-out, --rot 5s ease-in-out;
- 
+
   &:hover {
     --radiusFactor: 0.1;
     --rot: 8;
- 
+
     border: 1px solid rgba(255 255 255 / 0.4);
   }
- 
+
   /* Stars */
-  #blackHole #black .zwartgat-ster {
+  div {
     box-shadow: 20px 0px 10px 3px rgba(255, 255, 255, 0.05);
     grid-area: 1/1;
     height: calc(var(--radius) * 0.02);
     aspect-ratio: calc(0.25 + 0.7 * var(--length) * 50);
- 
+
     background-image: linear-gradient(
       90deg,
       rgb(255 255 255 / calc(0.2 + 0.5 * var(--trans))),
       #fff0
     );
- 
+
     border-radius: calc(var(--radius) * 0.01);
- 
+
     --calcDur: calc(
       var(--defDur) + var(--varDur) * var(--dur) + var(--slowDur) * var(--r)
     );
- 
+
     &:nth-child(even) {
       box-shadow: 0px 0px 3px 5px rgba(255, 255, 255, 0.025);
     }
- 
+
     /* Stars animation */
     animation-name: --ster;
     animation-duration: var(--calcDur);
@@ -80,7 +80,7 @@ body {
     animation-iteration-count: infinite;
   }
 }
- 
+
 @keyframes --ster {
   0% {
     transform: rotate(0turn)
@@ -92,7 +92,7 @@ body {
       );
     /* translateX(calc(var(--translateY) * 0.2)); */
   }
- 
+
   100% {
     transform: rotate(calc(1turn * var(--rot)))
       translateY(
@@ -104,5 +104,5 @@ body {
     /* translateX(calc(var(--translateY) * 0.2)); */
   }
 }
- 
+
 /* (bron: Sanne) */
