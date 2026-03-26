@@ -1,21 +1,5 @@
 /* 3d model */
 /* MARK: Hover animation */
-.Satelite3d {
-    animation: --rotate 20s infinite linear;
-
-}
-
-@keyframes --rotate {
-    0% {
-        transform:
-            rotateX(0deg) rotateY(0deg);
-    }
-
-    100% {
-        transform:
-            rotateX(-360deg) rotateY(-2turn);
-    }
-}
 
 
 .Satelite3dScene {
@@ -24,8 +8,6 @@
     --bodyHeight: calc(2*var(--sateliteBase));
     --bodyWidth: var(--sateliteBase);
     --bodyDepth: calc(1.5*var(--sateliteBase));
-
-
 
     perspective: 30rem;
 
@@ -145,8 +127,8 @@
 
             & .panelFront {
                 transform: translateZ(calc(var(--Depth) /2));
-               background: #0e4e57;
-background: linear-gradient(40deg,rgba(14, 78, 87, 1) 0%, rgba(33, 102, 107, 1) 27%, rgba(114, 191, 194, 1) 50%, rgba(31, 101, 105, 1) 78%, rgba(16, 83, 87, 1) 100%);
+                background: #0e4e57;
+                background: linear-gradient(40deg, rgba(14, 78, 87, 1) 0%, rgba(33, 102, 107, 1) 27%, rgba(114, 191, 194, 1) 50%, rgba(31, 101, 105, 1) 78%, rgba(16, 83, 87, 1) 100%);
             }
 
             & .panelBack {
