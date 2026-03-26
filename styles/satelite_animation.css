@@ -293,10 +293,10 @@ main {
 /* satelite to be animated */
 
 /* wrapper */
-.sateliteWrapper {
+.sateliteWrapperB {
     perspective: 20rem;
 
-    position: fixed;
+    /* position: fixed; */
     height: 100%;
     width: 100svw;
 
