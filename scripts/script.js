@@ -132,7 +132,9 @@ window.addEventListener('wheel', (e) => {
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
     const tryingToScrollDown = e.deltaY > 0 && scrollTop >= maxScroll;
     const scrollAmount = e.deltaY;
+    // console.log(scrollAmount);
  
+
     if (tryingToScrollDown && scrollAmount >= 100 && !scrolledPassedBottom) {
         console.log("Trying to scroll below the bottom!");
         scrolledPassedBottom = true;
